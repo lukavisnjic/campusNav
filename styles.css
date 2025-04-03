@@ -1,0 +1,119 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.header-logo {
+  padding-left: 20px;
+  height: auto;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  position: absolute;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.content {
+  padding: 0.5rem;
+  flex-grow: 2;
+  width: 72vw;
+}
+
+.sidebar {
+  background: #00234b;
+  width: 18vw;
+  height: 100vh;
+  position: fixed;
+  transition: ease 0.4s;
+}
+.sidebar.collapsed {
+  width: 85px;
+}
+
+.sidebar-header {
+  position: relative;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: x-large;
+  color: #fff;
+  display: flex;
+  padding: 15px 30px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.sidebar-header .toggler {
+  height: 35;
+  width: 35;
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #00234b;
+  transition: ease 0.4s;
+}
+
+.sidebar.collapsed.sidebar-header .toggler {
+  justify-content: center;
+  height: 10px;
+}
+
+.sidebar-header .toggler:hover {
+  background: #8c9ebd;
+  color: #00234b;
+}
+
+.sidebar-header .toggler span {
+  font-size: 1.75rem;
+}
+
+.sidebar-nav .navlink {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  text-decoration: none;
+  font-size: x-large;
+  transition: ease 0.4s;
+  border-radius: 8px;
+}
+.sidebar-nav .navlink:hover {
+  background: #8c9ebd;
+  color: #00234b;
+}
+
+.sidebar-nav .navlist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 15px;
+  transform: translateY(15px);
+}
+
+.sidebar-nav .navlink .nav-label {
+  transition: opacity ease 0.4s;
+}
+
+.sidebar.collapsed .sidebar-nav .navlink .nav-label {
+  opacity: 0;
+  pointer-events: none;
+}
