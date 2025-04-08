@@ -10,8 +10,19 @@
   font-style: normal;
 }
 .header-logo {
-  padding-left: 20px;
+  padding: 10px;
   height: auto;
+}
+
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white; /* prevents overlap blending */
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* optional for depth */
 }
 
 .wrapper {
@@ -19,6 +30,7 @@
   display: flex;
   justify-content: flex-start;
   position: absolute;
+  margin-top: 135px;
 }
 
 body {
@@ -26,10 +38,16 @@ body {
   background-color: #fff;
 }
 
+
 .content {
-  padding: 0.5rem;
-  flex-grow: 2;
-  width: 72vw;
+  margin-left: 18vw;
+  width: calc(100vw - 18vw); /* fill remaining space */
+  transition: all 0.4s ease;
+}
+
+.sidebar.collapsed ~ .content {
+  margin-left: 85px;
+  width: calc(100vw - 85px);
 }
 
 .sidebar {
@@ -37,6 +55,8 @@ body {
   width: 18vw;
   height: 100vh;
   position: fixed;
+  box-sizing: border-box;
+  overflow: hidden;
   transition: ease 0.4s;
 }
 .sidebar.collapsed {
@@ -118,10 +138,26 @@ body {
   pointer-events: none;
 }
 
+@media (max-width: 600px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .sidebar.collapsed {
+    width: 0;
+  }
+
+  .sidebar.collapsed ~ .content {
+    margin-left: 0;
+    width: 100vw;
+  }
+}
+
 /* Maps */
 #map {
-  height: 80%;
-  width: 100%;
+  height: 75vh;
+  width: 100%; /* ✅ takes up full width of .content */
+  box-sizing: border-box;
 }
 
 #controls {
@@ -131,6 +167,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  justify-content: center;
 }
 
 input[type="text"] {

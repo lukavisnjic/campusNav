@@ -10,7 +10,7 @@ sidebarToggler.addEventListener("click", () => {
 //Maps 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 39.740, lng: -105.222 }, // Replace with your campus center
+      center: { lat: 39.749813324170674, lng: -105.22261410670298 }, // Campus Center Coordinates
       zoom: 16,
     });
 
