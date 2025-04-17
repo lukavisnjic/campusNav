@@ -7,6 +7,8 @@ sidebarToggler.addEventListener("click", () => {
     sidebar.classList.toggle("collapsed")
 });
 
+
+
 //Maps 
 let map, directionsService, directionsRenderer;
 

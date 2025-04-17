@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floor Plan Highlight</title>
+    <style>
+
+        .highlight {
+            fill: rgba(255, 255, 0, 0.5); /* Yellow with transparency */
+
+        }
+        .hidden {
+            fill: none; /* Hide initially */
+        }
+        input {
+            margin-top: 10px;
+            padding: 5px;
+            font-family: 'Courier New', monospace;
+
+        }
+        button {
+            padding: 5px 10px;
+            margin-left: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: black;
+            font-size: 24px;
+            text-align: center;
+            padding: 20px;
+            z-index: 9999;
+        }
+
+        .popup-content {
+              background-color: white; /* White background */
+    border: 2px solid black; /* Black border around the popup */
+    padding: 40px;
+    border-radius: 8px; /* Optional rounded corners */
+    font-family: 'Courier New'
+        }
+
+        .popup button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace; /* Change font for button */
+
+        }
+    </style>
+</head>
+<body>
+
+    <svg id="floorPlan" width="600" height="400">
+        <image href="hillHall1.svg" width="600" height="400" />
+
+        <!-- Room Overlays (Initially Hidden) -->
+        <rect id="HH133" class="highlight hidden" x="140" y="10" width="42" height="40"/>
+        <rect id="HH131A" class="highlight hidden" x="180" y="30" width="27" height="12"/>
+        <rect id="HH128" class="highlight hidden" x="222" y="32" width="32" height="12"/>
+        <rect id="HH128A" class="highlight hidden" x="222" y="23" width="15" height="8"/>
+        <rect id="HH128B" class="highlight hidden" x="240" y="23" width="15" height="8"/>
+        <rect id="HH125A" class="highlight hidden" x="150" y="130" width="27" height="12"/>
+        <rect id="HH125B" class="highlight hidden" x="150" y="58" width="15" height="12"/>
+        <rect id="HH125" class="highlight hidden" x="150" y="78" width="50" height="53"/>
+        <rect id="HH126" class="highlight hidden" x="222" y="45" width="35" height="12"/>
+        <rect id="HH124" class="highlight hidden" x="222" y="70" width="30" height="26"/>
+        <rect id="HH123A" class="highlight hidden" x="150" y="145" width="28" height="25"/>
+        <rect id="HH123B" class="highlight hidden" x="150" y="170" width="28" height="35"/>
+        <rect id="HH123" class="highlight hidden" x="180" y="135" width="28" height="65"/>
+        <rect id="HH122" class="highlight hidden" x="220" y="100" width="33" height="30"/>
+        <rect id="HH120" class="highlight hidden" x="220" y="130" width="33" height="30"/>
+        <rect id="HH118" class="highlight hidden" x="220" y="165" width="33" height="30"/>
+        <rect id="HH121" class="highlight hidden" x="155" y="205" width="68" height="30"/>
+        <rect id="HH121A" class="highlight hidden" x="140" y="205" width="15" height="15"/>
+        <rect id="HH121B" class="highlight hidden" x="140" y="220" width="15" height="15"/>
+        <rect id="HH112" class="highlight hidden" x="155" y="250" width="20" height="30"/>
+        <rect id="HH114" class="highlight hidden" x="180" y="250" width="20" height="30"/>
+        <rect id="HH116" class="highlight hidden" x="200" y="250" width="20" height="30"/>
+        <rect id="HH149" class="highlight hidden" x="130" y="235" width="25" height="15"/>
+        <rect id="HH170" class="highlight hidden" x="350" y="124" width="30" height="15"/>
+    </svg>
+
+    <div>
+        <input type="text" id="roomInput" placeholder="Enter room number">
+        <button id="roomIn" onclick="highlightRoom()">Find Room</button>
+    </div>
+
+    <div id="errorPopup" class="popup">
+        <div class="popup-content">
+            <p>Error: Invalid room number entered</p>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <div id="emptyPopup" class="popup">
+        <div class="popup-content">
+            <p>Error: Input Empty</p>
+            <button onclick="closeEmptyPopup()">Close</button>
+        </div>
+    </div>
+
+    <p id="roomInfo"></p>
+
+    <script>
+        var input = document.getElementById("roomInput");
+
+        input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("roomIn").click();
+            }
+        });
+
+        function highlightRoom() {
+            let input = document.getElementById("roomInput").value.trim().toUpperCase();
+            console.log(input);
+            // Define room mapping
+            let rooms = {
+                "133": "HH133",
+                "131A": "HH131A",
+                "131": "HH31",
+                "129A": "HH129A",
+                "129B": "HH129B",
+                "128": "HH128",
+                "128A": "HH128A",
+                "128B": "HH128B",
+                "126": "HH126",
+                "125B": "HH125B",
+                "125A": "HH125A",
+                "125C": "HH125C",
+                "125": "HH125",
+                "124": "HH124",
+                "122": "HH122",
+                "120": "HH120",
+                "123": "HH123",
+                "123A": "HH123A",
+                "123B": "HH123B",
+                "118": "HH118",
+                "121": "HH121",
+                "121B": "HH121B",
+                "121A": "HH121A",
+                "112": "HH112",
+                "114": "HH114",
+                "116": "HH116",
+                "119": "HH119",
+                "106": "HH106",
+                "104": "HH104",
+                "102": "HH102",
+                "115": "HH115",
+                "113": "HH113",
+                "111A": "HH11A",
+                "108": "HH108",
+                "107": "HH107",
+                "136": "HH136",
+                "103": "HH103",
+                "102": "HH102",
+                "101": "HH101",
+                "149": "HH149",
+                "179": "HH179"
+            };
+
+            // Hide all rooms first
+            document.querySelectorAll('.highlight').forEach(room => room.classList.add('hidden'));
+            
+            if (input == "") {
+                emptyPopup();
+            }
+            else if (rooms[input]) {
+
+                document.getElementById(rooms[input]).classList.remove('hidden');
+
+        
+            } else {
+                    showPopup();
+
+            }
+        }
+
+        function emptyPopup() {
+            document.getElementById("emptyPopup").style.display = "block";
+        }
+
+        function closeEmptyPopup() {
+            document.getElementById("emptyPopup").style.display = "none";
+        }
+
+        function showPopup() {
+            document.getElementById("errorPopup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("errorPopup").style.display = "none";
+        }
+
+    </script>
+
+</body>
+</html>

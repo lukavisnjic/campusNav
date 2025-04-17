@@ -13,57 +13,140 @@
         <header class="main-header">
             <img class="header-logo" src = "Graphics/CSM_logo.png" width="300" height="96"/>
         </header>
+
         <div class="wrapper">
-        <aside class="sidebar">
-            <header class="sidebar-header">
-                <button class="toggler sidebar-toggler">
-                    <span class="material-symbols-outlined">menu</span>
-                </button>
-            </header>
+            <aside class="sidebar">
+                <header class="sidebar-header">
+                    <button class="toggler sidebar-toggler">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </header>
 
-            <nav class="sidebar-nav">
-                <ul class="navlist primary-nav">
-                    <li class="nav-item">
-                        <a href="index.html" class="navlink">
-                            <span class="material-symbols-outlined">map</span>
-                            <span class="nav-label">Campus Map</span>
-                        </a>
-                    </li>
+                <nav class="sidebar-nav">
+                    <ul class="navlist primary-nav">
+                        <li class="nav-item">
+                            <a href="index.html" class="navlink">
+                                <span class="material-symbols-outlined">map</span>
+                                <span class="nav-label">Campus Map</span>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="buildings.html" class="navlink">
-                            <span class="material-symbols-outlined">apartment</span>
-                            <span class="nav-label">Building Maps</span>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="buildings.html" class="navlink">
+                                <span class="material-symbols-outlined">apartment</span>
+                                <span class="nav-label">Building Maps</span>
+                            </a>
+                            <ul class="secondary-nav">
+                                <li class="nav-subitem">
+                                    <a href="chauvenetHall.html" class="navsublink">
+                                        <span class="nav-label">Chauvenet Hall [CH]</span>
+                                    </a>
+                                </li>
 
-                    <li class="nav-item">
-                        <a href="transit.html" class="navlink">
-                            <span class="material-symbols-outlined">directions_bus</span>
-                            <span class="nav-label">Ore Cart</span>
-                        </a>
-                    </li>
+                                <li class="nav-subitem">
+                                    <a href="hillHall.html" class="navsublink">
+                                        <span class="nav-label">Hill Hall [HH]</span>
+                                    </a>
+                                </li>
 
-                    <li class="nav-item">
-                        <a href="selfTour.html" class="navlink">
-                            <span class="material-symbols-outlined">near_me</span>
-                            <span class="nav-label">Self-Guided Tour</span>
-                        </a>
-                    </li>
+                                <li class="nav-subitem">
+                                    <a href="mcneilHall.html" class="navsublink">
+                                        <span class="nav-label">McNeil Hall [MC]</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="studentSchedules.html" class="navlink">
-                            <span class="material-symbols-outlined">calendar_month</span>
-                            <span class="nav-label">Schedule Viewer</span>
+                        <li class="nav-item">
+                            <a href="transit.html" class="navlink">
+                                <span class="material-symbols-outlined">directions_bus</span>
+                                <span class="nav-label">Ore Cart</span>
+                            </a>
+                            <ul class="secondary-nav">
+                                <li class="nav-subitem">
+                                    <a href="transitRoutes.html" class="navsublink">
+                                        <span class="nav-label">Routes</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-subitem">
+                                    <a href="transitSchedules.html" class="navsublink">
+                                        <span class="nav-label">Schedule</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="selfTour.html" class="navlink">
+                                <span class="material-symbols-outlined">near_me</span>
+                                <span class="nav-label">Self-Guided Tour</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="studentSchedules.html" class="navlink">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <span class="nav-label">Schedule Viewer</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+        <div class="content">
+            <div class="building-list">
+                <ul class="column">
+                  <li class="blist-header">A</li>
+                  <li class="blist-header">B</li>
+                  <li class="blist-header">C</li>
+                    <ul>
+                        <li class="blist">
+                            <a href="chauvenetHall.html" class="blist-link">
+                                <span class="blist-label">Chauvenet Hall [CH]</span>
+                            </a>
+                        </li>
+                    </ul>
+                  <li class="blist-header">D</li>
+                  <li class="blist-header">E</li>
+                  <li class="blist-header">F</li>
+                  <li class="blist-header">G</li>
+                  <li class="blist-header">H</li>
+                  <ul>
+                    <li class="blist">
+                        <a href="hillHall.html" class="blist-link">
+                            <span class="blist-label">Hill Hall [HH]</span>
                         </a>
                     </li>
                 </ul>
-            </nav>
-        </aside>
-        <div class="content">
-            <p>
-                Buildings
-            </p>
+                  <li class="blist-header">I</li>
+                  <li class="blist-header">J</li>
+                  <li class="blist-header">K</li>
+                  <li class="blist-header">L</li>
+                  <li class="blist-header">M</li>
+                  <ul>
+                        <li class="blist">
+                            <a href="mcneilHall.html" class="blist-link">
+                                <span class="blist-label">McNeil Hall [MC]</span>
+                            </a>
+                        </li>
+                    </ul>
+                </ul>
+                <ul class="column">
+                  <li class="blist-header">N</li>
+                  <li class="blist-header">O</li>
+                  <li class="blist-header">P</li>
+                  <li class="blist-header">Q</li>
+                  <li class="blist-header">R</li>
+                  <li class="blist-header">S</li>
+                  <li class="blist-header">T</li>
+                  <li class="blist-header">U</li>
+                  <li class="blist-header">V</li>
+                  <li class="blist-header">W</li>
+                  <li class="blist-header">X</li>
+                  <li class="blist-header">Y</li>
+                  <li class="blist-header">Z</li>
+                </ul>
+              </div>
         </div>
     </div>
 
