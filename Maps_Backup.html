@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Campus Navigation</title>
   <style>
+    #directions-panel {
+      max-height: 20%;
+      overflow-y: auto;
+      font-size: 1rem;
+      background-color: yellow;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+      display: none;
+}
+
+
     html, body {
       height: 100%;
       margin: 0;
@@ -82,6 +92,8 @@
     <button onclick="getRoute()">Get Directions</button>
   </div>
   <div id="map"></div>
+  <div id="directions-panel" style="padding: 1rem;"></div>
+
 
   <script>
     let map, directionsService, directionsRenderer;
@@ -134,6 +146,7 @@
       const destination = document.getElementById("destination-input").value;
       const useLocation = document.getElementById("use-location").checked;
       const originText = document.getElementById("origin-input").value;
+      const directionsPanel = document.getElementById("directions-panel");
 
       let origin = useLocation ? userLocation : originText;
 
@@ -151,6 +164,13 @@
         (response, status) => {
           if (status === "OK") {
             directionsRenderer.setDirections(response);
+
+            // Show worded directions
+            const steps = response.routes[0].legs[0].steps;
+            directionsPanel.innerHTML = "<h3>Directions:</h3>";
+            for (let i = 0; i < steps.length; i++) {
+              directionsPanel.innerHTML += `<p>${steps[i].instructions}</p>`;
+            }
           } else {
             alert("Directions request failed due to " + status);
             console.error("Directions error:", status);
@@ -158,6 +178,7 @@
         }
       );
     }
+
   </script>
 
   <script

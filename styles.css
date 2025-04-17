@@ -154,9 +154,26 @@ body {
 }
 
 /* Maps */
+#directions-panel {
+  overflow-y: auto;
+  font-size: 1rem;
+  background-color: white;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+  display: none; 
+}
+
+#directions-panel.block {
+  display: block;
+  padding: 1rem;
+  max-height: 20%;
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+}
+
 #map {
   height: 75vh;
-  width: 100%; /* ✅ takes up full width of .content */
+  width: 100%; 
   box-sizing: border-box;
 }
 
