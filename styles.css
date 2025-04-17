@@ -20,9 +20,9 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: white; /* prevents overlap blending */
+  background-color: white;
   padding: 10px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* optional for depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .wrapper {
@@ -40,8 +40,8 @@ body {
 
 
 .content {
-  margin-left: 18vw;
-  width: calc(100vw - 18vw); /* fill remaining space */
+  margin-left: 20vw;
+  width: calc(100vw - 18vw);
   transition: all 0.4s ease;
 }
 
@@ -52,11 +52,12 @@ body {
 
 .sidebar {
   background: #00234b;
-  width: 18vw;
+  width: 20vw;
   height: 100vh;
   position: fixed;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
   transition: ease 0.4s;
 }
 .sidebar.collapsed {
@@ -90,10 +91,17 @@ body {
   transition: ease 0.4s;
 }
 
-.sidebar.collapsed.sidebar-header .toggler {
+.sidebar.collapsed .sidebar-header {
   justify-content: center;
-  height: 10px;
+  padding: 15px 0;
 }
+
+.sidebar.collapsed .sidebar-header .toggler {
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+}
+
 
 .sidebar-header .toggler:hover {
   background: #8c9ebd;
@@ -115,7 +123,36 @@ body {
   transition: ease 0.4s;
   border-radius: 8px;
 }
+
+.secondary-nav {
+  display: none;
+}
+
+.sidebar:not(.collapsed) .nav-item:hover > .secondary-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+.sidebar-nav .navsublink {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  text-decoration: none;
+  font-size: large;
+  transition: ease 0.4s;
+  border-radius: 8px;
+}
+
 .sidebar-nav .navlink:hover {
+  background: #8c9ebd;
+  color: #00234b;
+}
+
+.sidebar-nav .navsublink:hover {
   background: #8c9ebd;
   color: #00234b;
 }

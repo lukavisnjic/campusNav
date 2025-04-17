@@ -7,6 +7,8 @@ sidebarToggler.addEventListener("click", () => {
     sidebar.classList.toggle("collapsed")
 });
 
+
+
 //Maps 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
