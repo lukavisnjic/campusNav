@@ -102,6 +102,82 @@ if (event.key === "Enter") {
 });
 
 
+function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 39.750, lng: -105.222 },
+        zoom: 17,
+      });
+
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map,
+        panel: document.getElementById("directions-panel") // This is where the directions will be displayed
+      });
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            userLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            guideToNextStop();
+          },
+          () => {
+            alert("Could not get your location.");
+          }
+        );
+      } else {
+        alert("Geolocation not supported by this browser.");
+      }
+    }
+
+    function guideToNextStop() {
+      if (currentStopIndex >= stops.length) {
+        alert("Tour complete!");
+        return;
+      }
+
+      const stop = stops[currentStopIndex];
+
+      const request = {
+        origin: userLocation,
+        destination: { lat: stop.lat, lng: stop.lng },
+        travelMode: google.maps.TravelMode.WALKING,
+      };
+
+      directionsService.route(request, (result, status) => {
+        if (status === "OK") {
+          directionsRenderer.setDirections(result);
+          userLocation = request.destination;
+          currentStopIndex++;
+        } else {
+          alert("Directions request failed: " + status);
+        }
+      });
+    }
+
+    function restartTour() {
+      currentStopIndex = 0;
+      directionsRenderer.set('directions', null); // Clear the previous directions
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            userLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            alert("Tour restarted! Click 'Next Stop' to begin again.");
+          },
+          () => {
+            alert("Could not get your location.");
+          }
+        );
+      } else {
+        alert("Geolocation not supported by this browser.");
+      }
+    }
+
 // FLOOR PLAN HIGHLIGHTS
 function highlightRoom() {
     let input = document.getElementById("roomInput").value.trim().toUpperCase();
