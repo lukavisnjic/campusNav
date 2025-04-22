@@ -154,12 +154,17 @@
         <rect id="HH149" class="highlight hidden" x="130" y="235" width="25" height="15"/>
     </svg>
 
-        <svg id="floor2" width="600" height="400">
-        <image href="Graphics\2HillHall.svg" width="600" height="400" />
+         <svg id="floor2" width="600" height="400">
+        <image href="2HillHall.svg" width="600" height="400" />
+            <rect id="HH251" class="highlight hidden" x="290" y="206" width="45" height="30"/>
+            <rect id="HH220" class="highlight hidden" x="235" y="25" width="30" height="30"/>
+            <rect id="HH211" class="highlight hidden" x="160" y="295" width="30" height="30"/>
         </svg>
 
         <svg id="floor3" width="600" height="400">
-        <image href="Graphics\hillHall3.svg" width="600" height="400" />
+        <image href="hillHall3.svg" width="600" height="400" />
+        <rect id="HH351" class="highlight hidden" x="305" y="172" width="62" height="30"/>
+        <rect id="HH315" class="highlight hidden" x="215" y="355" width="20" height="20"/>
         </svg>
 
         <button id="backToTop">Back to Top</button>
@@ -270,7 +275,12 @@
                 "141": "HH141",
                 "144": "HH144",
                 "149": "HH149",
-                "179": "HH179"
+                "179": "HH179",
+                "251": "HH251",
+                "220": "HH220",
+                "211": "HH211",
+                "351": "HH351",
+                "315": "HH315"
             };
 
             // Hide all rooms first
