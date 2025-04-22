@@ -13,6 +13,7 @@ sidebarToggler.addEventListener("click", () => {
 let map, directionsService, directionsRenderer;
  /* The map works only when it first starts up but works perfectly after that*/
 let currentStopIndex = 0;
+let lat, lng = 0.0;
 
 const stops = [
   { name: "Campus Housing", lat: 39.74826511866739, lng: -105.22111495352556 },
@@ -34,10 +35,10 @@ const stops = [
 function initMap() {
   // Initialize the map
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 39.740, lng: -105.222 }, // Default center for the map
+    center: { lat: 39.75042, lng: -105.22260 }, // Default center for the map
     zoom: 16,
   });
-
+   
   directionsService = new google.maps.DirectionsService();
   directionsRenderer = new google.maps.DirectionsRenderer();
   directionsRenderer.setMap(map);
@@ -52,22 +53,7 @@ function initMap() {
   new google.maps.places.Autocomplete(destinationInput);
 
   // Check if geolocation is available and set the user's location
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        userLocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-        console.log("User location set:", userLocation);  // Log user location
-      },
-      () => {
-        alert("Could not get your location.");
-      }
-    );
-  } else {
-    alert("Geolocation not supported by this browser.");
-  }
+  
 
   // Event listener for "Use My Location" checkbox
   useLocationCheckbox.addEventListener("change", () => {
@@ -77,21 +63,29 @@ function initMap() {
       originInput.placeholder = "Using your location...";
 
       // Set user location when the checkbox is checked
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          userLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-          console.log("User location set from checkbox:", userLocation);
-        },
-        () => {
-          alert("Could not get your location.");
-          useLocationCheckbox.checked = false;
-          originInput.disabled = false;
-          originInput.placeholder = "Enter starting location";
+      if (lat == 0.0 && lng == 0.0) {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+              console.log("User location set:", userLocation);  // Log user location
+            },
+            () => {
+              alert("Could not get your location.");
+            }
+          );
+        } else {
+          alert("Geolocation not supported by this browser.");
         }
-      );
+       } else {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          sessionStorage.setItem("lat", position.coords.latitude);
+          sessionStorage.setItem("lng", position.coords.longitude);
+        });
+       }
     } else {
       // Reset the origin input when unchecked
       originInput.disabled = false;
@@ -104,22 +98,12 @@ function initMap() {
 
 function getRoute() {
   window.onload = function () {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          userLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-          console.log("User location set:", userLocation);
-        },
-        (error) => {
-          console.error("Geolocation error:", error);
-          alert("Could not get your location.");
-        }
-      );
+    const lat = sessionStorage.getItem("lat");
+    const lng = sessionStorage.getItem("lng");
+    if (lat && lng) {
+      console.log("Reusing saved coordinates:", lat, lng);
     } else {
-      alert("Geolocation not supported by this browser.");
+      // fallback: re-request location
     }
   };
   
@@ -128,12 +112,23 @@ function getRoute() {
   const originText = document.getElementById("origin-input").value;
   const directionsPanel = document.getElementById("directions-panel");
 
-  let origin = useLocation ? userLocation : originText;
+  // Get location and store in variables
+  let origin;
 
-  if (!userLocation) {
-    console.log("User location is not yet available.");
-    return;
+  if (useLocation) {
+    const lat = sessionStorage.getItem("lat");
+    const lng = sessionStorage.getItem("lng");
+
+    if (lat && lng) {
+      origin = { lat: parseFloat(lat), lng: parseFloat(lng) };
+    } else {
+      // Fallback if location is missing
+      origin = originText;
+    }
+  } else {
+    origin = originText;
   }
+
 
   if (!origin || !destination) {
     alert("Please provide both origin and destination.");
@@ -164,56 +159,46 @@ function getRoute() {
   );
 }
 
-function guideToNextStop() {
+  function guideToNextStop() {
+    if (currentStopIndex >= stops.length) {
+      alert("Tour complete!");
+      return;
+    }
   
-  window.onload = function () {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          userLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-          console.log("User location set:", userLocation);
-        },
-        (error) => {
-          console.error("Geolocation error:", error);
-          alert("Could not get your location.");
-        }
-      );
+    // Try to get user location from sessionStorage
+    let origin;
+    const lat = sessionStorage.getItem("lat");
+    const lng = sessionStorage.getItem("lng");
+  
+    if (lat && lng) {
+      origin = { lat: parseFloat(lat), lng: parseFloat(lng) };
     } else {
-      alert("Geolocation not supported by this browser.");
+      alert("User location not available. Make sure to enable location first.");
+      return;
     }
-  };
-
-  if (currentStopIndex >= stops.length) {
-    alert("Tour complete!");
-    return;
+  
+    const stop = stops[currentStopIndex];
+  
+    const request = {
+      origin: origin,
+      destination: { lat: stop.lat, lng: stop.lng },
+      travelMode: google.maps.TravelMode.WALKING,
+    };
+  
+    directionsService.route(request, (result, status) => {
+      if (status === "OK") {
+        directionsRenderer.setDirections(result);
+  
+        // Update sessionStorage to new stop
+        sessionStorage.setItem("lat", stop.lat);
+        sessionStorage.setItem("lng", stop.lng);
+  
+        currentStopIndex++;
+      } else {
+        alert("Directions request failed: " + status);
+      }
+    });
   }
-
-  if (!userLocation) {
-    console.log("User location is not yet available.");
-    return;
-  }
-
-  const stop = stops[currentStopIndex];
-
-  const request = {
-    origin: userLocation,
-    destination: { lat: stop.lat, lng: stop.lng },
-    travelMode: google.maps.TravelMode.WALKING,
-  };
-
-  directionsService.route(request, (result, status) => {
-    if (status === "OK") {
-      directionsRenderer.setDirections(result);  // Render directions on the map and panel
-      userLocation = request.destination;
-      currentStopIndex++;
-    } else {
-      alert("Directions request failed: " + status);
-    }
-  });
-}s
 
 function restartTour() {
   currentStopIndex = 0;
@@ -236,29 +221,6 @@ function restartTour() {
   }
 }
 
-
-function resetMap() {
-  // Reset the map to initial state
-  if (directionsRenderer) {
-    directionsRenderer.setDirections({ routes: [] }); // Clear previous directions
-  }else{
-    console.log("DirectionRenderer is uninitialized")
-  }
-  if (map) {
-    map.setCenter({ lat: 39.740, lng: -105.222 }); // Reset map center
-    map.setZoom(16); // Reset zoom level
-  }else{
-    console.log("Map is uninitialized");
-  }
-  // Clear any ongoing user location updates
-  userLocation = null;
-}
-
-// Listen for changes when navigating between sections
-window.addEventListener("hashchange", function() {
-  // Reset the map when switching sections
-  resetMap();
-});
 
 document.getElementById("next-stop-btn").addEventListener("click", guideToNextStop);
 document.getElementById("restart-tour-btn").addEventListener("click", restartTour);
