@@ -14,7 +14,7 @@ let map, directionsService, directionsRenderer;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 39.740, lng: -105.222 }, // Replace with your campus center
+    center: { lat: 39.75042, lng: -105.22260 }, // Replace with your campus center
     zoom: 16,
   });
 
