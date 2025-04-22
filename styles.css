@@ -190,6 +190,10 @@ body {
   }
 }
 
+.floor-header {
+  font-size: xx-large;
+}
+
 /* Maps */
 #directions-panel {
   overflow-y: auto;
@@ -305,4 +309,47 @@ label {
 .building-list .blist-link {
   color: #8c9ebd;
   text-decoration: none;
+}
+
+/* FLoor Plan Highlights */
+
+.highlight {
+  fill: rgba(255, 255, 0, 0.5); /* Yellow with transparency */
+
+}
+.hidden {
+  fill: none; /* Hide initially */
+}
+input {
+  margin-top: 10px;
+  padding: 5px;
+  font-family: 'Courier New', monospace;
+
+}
+button {
+  padding: 5px 10px;
+  margin-left: 5px;
+  font-family: 'Courier New', monospace;
+}
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: black;
+  font-size: 24px;
+  text-align: center;
+  padding: 20px;
+  z-index: 9999;
+}
+
+.popup-content {
+    background-color: white; /* White background */
+border: 2px solid black; /* Black border around the popup */
+padding: 40px;
+border-radius: 8px; /* Optional rounded corners */
+font-family: 'Courier New'
 }
