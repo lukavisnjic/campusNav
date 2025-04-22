@@ -154,7 +154,7 @@
         <rect id="HH149" class="highlight hidden" x="130" y="235" width="25" height="15"/>
     </svg>
 
-         <svg id="floor2" width="600" height="400">
+        <svg id="floor2" width="600" height="400">
         <image href="2HillHall.svg" width="600" height="400" />
             <rect id="HH251" class="highlight hidden" x="290" y="206" width="45" height="30"/>
             <rect id="HH220" class="highlight hidden" x="235" y="25" width="30" height="30"/>
