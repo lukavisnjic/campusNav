@@ -11,10 +11,30 @@ sidebarToggler.addEventListener("click", () => {
 
 //Maps 
 let map, directionsService, directionsRenderer;
+ /* The map works only when it first starts up but works perfectly after that*/
+let currentStopIndex = 0;
+
+const stops = [
+  { name: "Campus Housing", lat: 39.74826511866739, lng: -105.22111495352556 },
+  { name: "Mines Dining Hall", lat: 39.74864769731091, lng: -105.2214090874086 },
+  { name: "Student Support and Community", lat: 39.748906, lng: -105.221917 },
+  { name: "Academic Buildings (1)", lat: 39.749520, lng: -105.221809}, 
+  { name: "Student Recreation Center", lat: 39.74967627631938, lng: -105.22257902132645},
+  { name: "Ben Parker Student Center", lat: 39.7502421305587, lng: -105.22318118861799}, 
+  { name: "Campus Library and Housing", lat: 39.751473031196014, lng: -105.2234631558418},
+  { name: "Guggenheim Hall", lat: 39.751257, lng: -105.222349},
+  { name: "Kafadar Commons", lat: 39.75121544675948,lng: -105.22152486379171},
+  { name: "Academic Buildings (2)", lat: 39.75231274085103, lng: -105.22070920902605},
+  { name: "Academic Building (3)", lat: 39.75162837004105, lng: -105.22050598386501},
+  { name: "Student Support Services", lat: 39.748984253433946, lng: -105.22053401143191}
+];
+
+
 
 function initMap() {
+  // Initialize the map
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 39.75042, lng: -105.22260 }, // Replace with your campus center
+    center: { lat: 39.740, lng: -105.222 }, // Default center for the map
     zoom: 16,
   });
 
@@ -22,23 +42,48 @@ function initMap() {
   directionsRenderer = new google.maps.DirectionsRenderer();
   directionsRenderer.setMap(map);
 
+  // Input fields and checkbox
   const originInput = document.getElementById("origin-input");
   const destinationInput = document.getElementById("destination-input");
   const useLocationCheckbox = document.getElementById("use-location");
 
+  // Set up Google Places Autocomplete for the inputs
   new google.maps.places.Autocomplete(originInput);
   new google.maps.places.Autocomplete(destinationInput);
 
+  // Check if geolocation is available and set the user's location
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        userLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        console.log("User location set:", userLocation);  // Log user location
+      },
+      () => {
+        alert("Could not get your location.");
+      }
+    );
+  } else {
+    alert("Geolocation not supported by this browser.");
+  }
+
+  // Event listener for "Use My Location" checkbox
   useLocationCheckbox.addEventListener("change", () => {
     if (useLocationCheckbox.checked) {
+      // Disable origin input and set placeholder text
       originInput.disabled = true;
       originInput.placeholder = "Using your location...";
+
+      // Set user location when the checkbox is checked
       navigator.geolocation.getCurrentPosition(
         (position) => {
           userLocation = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
+          console.log("User location set from checkbox:", userLocation);
         },
         () => {
           alert("Could not get your location.");
@@ -48,6 +93,7 @@ function initMap() {
         }
       );
     } else {
+      // Reset the origin input when unchecked
       originInput.disabled = false;
       originInput.placeholder = "Enter starting location";
       userLocation = null;
@@ -55,13 +101,39 @@ function initMap() {
   });
 }
 
+
 function getRoute() {
+  window.onload = function () {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          userLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          console.log("User location set:", userLocation);
+        },
+        (error) => {
+          console.error("Geolocation error:", error);
+          alert("Could not get your location.");
+        }
+      );
+    } else {
+      alert("Geolocation not supported by this browser.");
+    }
+  };
+  
   const destination = document.getElementById("destination-input").value;
   const useLocation = document.getElementById("use-location").checked;
   const originText = document.getElementById("origin-input").value;
   const directionsPanel = document.getElementById("directions-panel");
 
   let origin = useLocation ? userLocation : originText;
+
+  if (!userLocation) {
+    console.log("User location is not yet available.");
+    return;
+  }
 
   if (!origin || !destination) {
     alert("Please provide both origin and destination.");
@@ -92,91 +164,106 @@ function getRoute() {
   );
 }
 
-var input = document.getElementById("roomInput");
-
-input.addEventListener("keypress", function(event) {
-if (event.key === "Enter") {
-    event.preventDefault();
-    document.getElementById("roomIn").click();
+function guideToNextStop() {
+  
+  window.onload = function () {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          userLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          console.log("User location set:", userLocation);
+        },
+        (error) => {
+          console.error("Geolocation error:", error);
+          alert("Could not get your location.");
+        }
+      );
+    } else {
+      alert("Geolocation not supported by this browser.");
     }
+  };
+
+  if (currentStopIndex >= stops.length) {
+    alert("Tour complete!");
+    return;
+  }
+
+  if (!userLocation) {
+    console.log("User location is not yet available.");
+    return;
+  }
+
+  const stop = stops[currentStopIndex];
+
+  const request = {
+    origin: userLocation,
+    destination: { lat: stop.lat, lng: stop.lng },
+    travelMode: google.maps.TravelMode.WALKING,
+  };
+
+  directionsService.route(request, (result, status) => {
+    if (status === "OK") {
+      directionsRenderer.setDirections(result);  // Render directions on the map and panel
+      userLocation = request.destination;
+      currentStopIndex++;
+    } else {
+      alert("Directions request failed: " + status);
+    }
+  });
+}s
+
+function restartTour() {
+  currentStopIndex = 0;
+  directionsRenderer.set('directions', null); // Clear previous directions
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        userLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        alert("Tour restarted! Click 'Next Stop' to begin again.");
+      },
+      () => {
+        alert("Could not get your location.");
+      }
+    );
+  } else {
+    alert("Geolocation not supported by this browser.");
+  }
+}
+
+
+function resetMap() {
+  // Reset the map to initial state
+  if (directionsRenderer) {
+    directionsRenderer.setDirections({ routes: [] }); // Clear previous directions
+  }else{
+    console.log("DirectionRenderer is uninitialized")
+  }
+  if (map) {
+    map.setCenter({ lat: 39.740, lng: -105.222 }); // Reset map center
+    map.setZoom(16); // Reset zoom level
+  }else{
+    console.log("Map is uninitialized");
+  }
+  // Clear any ongoing user location updates
+  userLocation = null;
+}
+
+// Listen for changes when navigating between sections
+window.addEventListener("hashchange", function() {
+  // Reset the map when switching sections
+  resetMap();
 });
 
+document.getElementById("next-stop-btn").addEventListener("click", guideToNextStop);
+document.getElementById("restart-tour-btn").addEventListener("click", restartTour);
+window.onload = initMap;
 
-function initMap() {
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 39.750, lng: -105.222 },
-        zoom: 17,
-      });
-
-      directionsService = new google.maps.DirectionsService();
-      directionsRenderer = new google.maps.DirectionsRenderer({
-        map: map,
-        panel: document.getElementById("directions-panel") // This is where the directions will be displayed
-      });
-
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          position => {
-            userLocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            };
-            guideToNextStop();
-          },
-          () => {
-            alert("Could not get your location.");
-          }
-        );
-      } else {
-        alert("Geolocation not supported by this browser.");
-      }
-    }
-
-    function guideToNextStop() {
-      if (currentStopIndex >= stops.length) {
-        alert("Tour complete!");
-        return;
-      }
-
-      const stop = stops[currentStopIndex];
-
-      const request = {
-        origin: userLocation,
-        destination: { lat: stop.lat, lng: stop.lng },
-        travelMode: google.maps.TravelMode.WALKING,
-      };
-
-      directionsService.route(request, (result, status) => {
-        if (status === "OK") {
-          directionsRenderer.setDirections(result);
-          userLocation = request.destination;
-          currentStopIndex++;
-        } else {
-          alert("Directions request failed: " + status);
-        }
-      });
-    }
-
-    function restartTour() {
-      currentStopIndex = 0;
-      directionsRenderer.set('directions', null); // Clear the previous directions
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          position => {
-            userLocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            };
-            alert("Tour restarted! Click 'Next Stop' to begin again.");
-          },
-          () => {
-            alert("Could not get your location.");
-          }
-        );
-      } else {
-        alert("Geolocation not supported by this browser.");
-      }
-    }
 
 // FLOOR PLAN HIGHLIGHTS
 function highlightRoom() {
