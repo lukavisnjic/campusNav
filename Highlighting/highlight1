@@ -41,10 +41,10 @@
 
         .popup-content {
               background-color: white; /* White background */
-    border: 2px solid black; /* Black border around the popup */
-    padding: 40px;
-    border-radius: 8px; /* Optional rounded corners */
-    font-family: 'Courier New'
+                border: 2px solid black; /* Black border around the popup */
+                padding: 40px;
+                border-radius: 8px; /* Optional rounded corners */
+                font-family: 'Courier New'
         }
 
         .popup button {
@@ -59,12 +59,27 @@
             font-family: 'Courier New', monospace; /* Change font for button */
 
         }
+        body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    img {
+        width: 100%;
+        margin-top: 100px;
+    }
+
     </style>
 </head>
 <body>
+    <div>
+        <input type="text" id="roomInput" placeholder="Enter room number">
+        <button id="roomIn" onclick="highlightRoom()">Find Room</button>
+    </div>
 
-    <svg id="floorPlan" width="600" height="400">
-        <image href="hillHall1.svg" width="600" height="400" />
+    <svg id="floor1" width="600" height="400">
+        <image href="Graphics\hillHall1.svg" width="600" height="400" />
 
         <!-- Room Overlays (Initially Hidden) -->
         <rect id="HH183" class="highlight hidden" x="350" y="90" width="30" height="15"/>
@@ -139,10 +154,16 @@
         <rect id="HH149" class="highlight hidden" x="130" y="235" width="25" height="15"/>
     </svg>
 
-    <div>
-        <input type="text" id="roomInput" placeholder="Enter room number">
-        <button id="roomIn" onclick="highlightRoom()">Find Room</button>
-    </div>
+        <svg id="floor2" width="600" height="400">
+        <image href="Graphics\2HillHall.svg" width="600" height="400" />
+        </svg>
+
+        <svg id="floor3" width="600" height="400">
+        <image href="Graphics\hillHall3.svg" width="600" height="400" />
+        </svg>
+
+        <button id="backToTop">Back to Top</button>
+
 
     <div id="errorPopup" class="popup">
         <div class="popup-content">
@@ -244,7 +265,6 @@
                 "136": "HH136",
                 "105": "HH105",
                 "103": "HH103",
-                "102": "HH102",
                 "101": "HH101",
                 "140": "HH140",
                 "141": "HH141",
@@ -255,7 +275,18 @@
 
             // Hide all rooms first
             document.querySelectorAll('.highlight').forEach(room => room.classList.add('hidden'));
-            
+            const firstDigit = input.charAt(0); // get the first character
+
+         if (firstDigit === '2') {
+            document.getElementById('floor2').scrollIntoView({ behavior: 'smooth' });
+        } else if (firstDigit === '3') {
+            document.getElementById('floor3').scrollIntoView({ behavior: 'smooth' });
+        } else {
+            // fallback: scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+
             if (input == "") {
                 emptyPopup();
             }
@@ -269,6 +300,14 @@
 
             }
         }
+
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' 
+            });
+        });
+
 
         function emptyPopup() {
             document.getElementById("emptyPopup").style.display = "block";
@@ -285,8 +324,8 @@
         function closePopup() {
             document.getElementById("errorPopup").style.display = "none";
         }
-
     </script>
+
 
 </body>
 </html>
