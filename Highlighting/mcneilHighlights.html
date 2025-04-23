@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floor Plan Highlight</title>
+    <style>
+
+        .highlight {
+            fill: rgba(255, 255, 0, 0.5); /* Yellow with transparency */
+
+        }
+        .hidden {
+            fill: none; /* Hide initially */
+        }
+        input {
+            margin-top: 10px;
+            padding: 5px;
+            font-family: 'Courier New', monospace;
+
+        }
+        button {
+            padding: 5px 10px;
+            margin-left: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: black;
+            font-size: 24px;
+            text-align: center;
+            padding: 20px;
+            z-index: 9999;
+        }
+
+        .popup-content {
+              background-color: white; /* White background */
+                border: 2px solid black; /* Black border around the popup */
+                padding: 40px;
+                border-radius: 8px; /* Optional rounded corners */
+                font-family: 'Courier New'
+        }
+
+        .popup button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace; /* Change font for button */
+
+        }
+        body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    img {
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="roomInput" placeholder="Enter room number">
+        <button id="roomIn" onclick="highlightRoom()">Find Room</button>
+    </div>
+
+    <svg id="floor1" width="900" height="600">
+        <image href="1mcneil.svg" width="900" height="600" />
+        <rect id="105" class="highlight hidden" x="45" y="200" width="70" height="180"/>
+        <rect id="107" class="highlight hidden" x="120" y="230" width="50" height="35"/>
+        <rect id="108" class="highlight hidden" x="120" y="270" width="50" height="50"/>
+        <rect id="109" class="highlight hidden" x="120" y="320" width="60" height="60"/>
+        <rect id="111" class="highlight hidden" x="185" y="200" width="50" height="40"/>
+        <rect id="112" class="highlight hidden" x="190" y="275" width="25" height="40"/>
+        <rect id="113" class="highlight hidden" x="215" y="275" width="40" height="40"/>
+        <rect id="114" class="highlight hidden" x="190" y="315" width="65" height="60"/>
+        <rect id="115" class="highlight hidden" x="235" y="200" width="90" height="40"/>
+        <rect id="116" class="highlight hidden" x="255" y="240" width="100" height="90"/>
+        <rect id="117" class="highlight hidden" x="255" y="330" width="50" height="50"/>
+        <rect id="118" class="highlight hidden" x="325" y="200" width="50" height="40"/>
+        <rect id="119" class="highlight hidden" x="305" y="330" width="50" height="50"/>
+        <rect id="121" class="highlight hidden" x="355" y="240" width="40" height="60"/>
+        <rect id="122" class="highlight hidden" x="355" y="300" width="55" height="80"/>
+        <rect id="123" class="highlight hidden" x="375" y="200" width="360" height="35"/>
+        <rect id="124" class="highlight hidden" x="395" y="240" width="70" height="60"/>
+        <rect id="125" class="highlight hidden" x="410" y="300" width="55" height="30"/>
+        <rect id="126" class="highlight hidden" x="410" y="330" width="55" height="55"/>
+        <rect id="127" class="highlight hidden" x="465" y="300" width="57" height="85"/>
+        <rect id="128" class="highlight hidden" x="525" y="235" width="30" height="35"/>
+        <rect id="129" class="highlight hidden" x="555" y="235" width="40" height="35"/>
+        <rect id="130" class="highlight hidden" x="525" y="275" width="90" height="55"/>
+        <rect id="131" class="highlight hidden" x="525" y="325" width="45" height="55"/>
+        <rect id="132" class="highlight hidden" x="570" y="325" width="45" height="55"/>
+        <rect id="133" class="highlight hidden" x="595" y="235" width="50" height="35"/>
+        <rect id="134" class="highlight hidden" x="615" y="285" width="75" height="70"/>
+        <rect id="135" class="highlight hidden" x="625" y="355" width="45" height="45"/>
+        <rect id="136" class="highlight hidden" x="640" y="235" width="50" height="35"/>
+        <rect id="137" class="highlight hidden" x="670" y="355" width="45" height="45"/>
+        <rect id="138" class="highlight hidden" x="715" y="245" width="50" height="90"/>
+        <rect id="139" class="highlight hidden" x="715" y="335" width="50" height="65"/>
+        <rect id="140" class="highlight hidden" x="767" y="200" width="65" height="50"/>
+        <rect id="141" class="highlight hidden" x="767" y="250" width="65" height="130"/>
+        <rect id="142" class="highlight hidden" x="767" y="380" width="30" height="20"/>
+    </svg>
+
+        <svg id="floor2" width="900" height="600">
+        <image href="2mcneil.svg" width="900" height="600" />
+        <rect id="204" class="highlight hidden" x="40" y="355" width="40" height="35"/>
+        <rect id="213" class="highlight hidden" x="245" y="270" width="180" height="120"/>
+        <rect id="214" class="highlight hidden" x="425" y="270" width="145" height="120"/>
+        <rect id="217" class="highlight hidden" x="570" y="270" width="40" height="40"/>
+        <rect id="218" class="highlight hidden" x="570" y="310" width="40" height="40"/>
+        <rect id="219" class="highlight hidden" x="570" y="350" width="40" height="40"/>
+        <rect id="215" class="highlight hidden" x="610" y="270" width="105" height="105"/>
+        <rect id="216" class="highlight hidden" x="715" y="270" width="120" height="105"/>
+        <rect id="220" class="highlight hidden" x="625" y="375" width="45" height="40"/>
+        <rect id="221" class="highlight hidden" x="670" y="375" width="45" height="40"/>
+        <rect id="222" class="highlight hidden" x="715" y="375" width="45" height="40"/>
+        <rect id="223" class="highlight hidden" x="760" y="375" width="45" height="40"/>
+        </svg>
+
+        <svg id="floor3" width="900" height="600">
+        <image href="3mcneil.svg" width="900" height="600" />
+        <rect id="313" class="highlight hidden" x="245" y="270" width="180" height="120"/>
+        <rect id="314" class="highlight hidden" x="425" y="270" width="145" height="120"/>
+        <rect id="317" class="highlight hidden" x="570" y="270" width="40" height="40"/>
+        <rect id="318" class="highlight hidden" x="570" y="310" width="40" height="40"/>
+        <rect id="319" class="highlight hidden" x="570" y="350" width="40" height="40"/>
+        <rect id="315" class="highlight hidden" x="610" y="270" width="105" height="105"/>
+        <rect id="316" class="highlight hidden" x="715" y="270" width="120" height="105"/>
+        <rect id="320" class="highlight hidden" x="625" y="375" width="45" height="40"/>
+        <rect id="321" class="highlight hidden" x="670" y="375" width="45" height="40"/>
+        <rect id="322" class="highlight hidden" x="715" y="375" width="45" height="40"/>
+        <rect id="323" class="highlight hidden" x="760" y="375" width="45" height="40"/>
+        </svg>
+
+        <button id="backToTop">Back to Top</button>
+
+
+    <div id="errorPopup" class="popup">
+        <div class="popup-content">
+            <p>Error: Invalid room number entered</p>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <div id="emptyPopup" class="popup">
+        <div class="popup-content">
+            <p>Error: Input Empty</p>
+            <button onclick="closeEmptyPopup()">Close</button>
+        </div>
+    </div>
+
+    <p id="roomInfo"></p>
+
+    <script>
+        var input = document.getElementById("roomInput");
+
+        input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("roomIn").click();
+            }
+        });
+
+        function highlightRoom() {
+            let input = document.getElementById("roomInput").value.trim().toUpperCase();
+            console.log(input);
+            // Define room mapping
+            let rooms = new Set(["105", "107", "108", "109", "111", "112", "113", 
+            "114", "115", "116", "117", "118", "119", "121", "122", "123", "124", "125", "126",
+            "127", "128", "129", "130", "131", "132", "133", "134", "135", "136",
+            "137", "138", "139", "140", "141", "142", "204", "213", "214", "217",
+             "218", "219", "215", "216", "220", "221", "222", "223", "313", "314",
+             "317", "318", "319", "315", "316", "320", "321", "322", "323"]);
+
+
+            // Hide all rooms first
+            document.querySelectorAll('.highlight').forEach(room => room.classList.add('hidden'));
+            const firstDigit = input.charAt(0); // get the first character
+
+         if (firstDigit == '2' &&  rooms.has(input)) {
+            document.getElementById('floor2').scrollIntoView({ behavior: 'smooth' });
+        } else if (firstDigit == '3' &&  rooms.has(input)) {
+            document.getElementById('floor3').scrollIntoView({ behavior: 'smooth' });
+        } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+
+            if (input == "") {
+                emptyPopup();
+            }
+            else if (rooms.has(input)) {
+                document.getElementById(input).classList.remove('hidden');
+            } else {
+                    showPopup();
+
+            }
+        }
+
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' 
+            });
+        });
+
+
+        function emptyPopup() {
+            document.getElementById("emptyPopup").style.display = "block";
+        }
+
+        function closeEmptyPopup() {
+            document.getElementById("emptyPopup").style.display = "none";
+        }
+
+        function showPopup() {
+            document.getElementById("errorPopup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("errorPopup").style.display = "none";
+        }
+    </script>
+
+
+</body>
+</html>
