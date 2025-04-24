@@ -207,7 +207,9 @@ body {
 #directions-panel.block {
   display: block;
   padding: 1rem;
-  max-height: 20%;
+  max-height: 80%;
+  max-width: 100%;
+  width: 35vw;
   overflow-y: auto;
   background-color: white;
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
@@ -273,16 +275,25 @@ label {
   border-radius: 5px;
   cursor: pointer;
 }
-#directions-panel {
-  width: 30%;
-  height: 75vh;
-  overflow-y: scroll;
-  float: right;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border-left: 2px solid #ccc;
+
+#facts-panel {
+  position: fixed;
+  overflow-y: hidden;
+  font-size: 1rem;
+  background-color: white;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+  display: none;
+  transition: height 0.3s ease, padding 0.3s ease;
+  z-index: 1000;
 }
 
+#facts-panel.block {
+  display: block;
+  height: 40vh; /* adjust based on how “big” you want it */
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-width: 100%;
+}
 
 @media (min-width: 600px) {
   #controls {

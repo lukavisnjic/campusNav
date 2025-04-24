@@ -16,18 +16,18 @@ let currentStopIndex = 0;
 let lat, lng = 0.0;
 
 const stops = [
-  { name: "Campus Housing", lat: 39.74826511866739, lng: -105.22111495352556 },
-  { name: "Mines Dining Hall", lat: 39.74864769731091, lng: -105.2214090874086 },
-  { name: "Student Support and Community", lat: 39.748906, lng: -105.221917 },
-  { name: "Academic Buildings (1)", lat: 39.749520, lng: -105.221809}, 
-  { name: "Student Recreation Center", lat: 39.74967627631938, lng: -105.22257902132645},
-  { name: "Ben Parker Student Center", lat: 39.7502421305587, lng: -105.22318118861799}, 
-  { name: "Campus Library and Housing", lat: 39.751473031196014, lng: -105.2234631558418},
-  { name: "Guggenheim Hall", lat: 39.751257, lng: -105.222349},
-  { name: "Kafadar Commons", lat: 39.75121544675948,lng: -105.22152486379171},
-  { name: "Academic Buildings (2)", lat: 39.75231274085103, lng: -105.22070920902605},
-  { name: "Academic Building (3)", lat: 39.75162837004105, lng: -105.22050598386501},
-  { name: "Student Support Services", lat: 39.748984253433946, lng: -105.22053401143191}
+  { name: "Campus Housing", lat: 39.74826511866739, lng: -105.22111495352556, funFact: "This is where most freshmen live during their first year at Mines."},
+  { name: "Mines Dining Hall", lat: 39.74864769731091, lng: -105.2214090874086, funFact: "This is where most freshmen live during their first year at Mines." },
+  { name: "Student Support and Community", lat: 39.748906, lng: -105.221917, funFact: "This is where most freshmen live during their first year at Mines."  },
+  { name: "Academic Buildings (1)", lat: 39.749520, lng: -105.221809, funFact: "This is where most freshmen live during their first year at Mines." }, 
+  { name: "Student Recreation Center", lat: 39.74967627631938, lng: -105.22257902132645, funFact: "This is where most freshmen live during their first year at Mines." },
+  { name: "Ben Parker Student Center", lat: 39.7502421305587, lng: -105.22318118861799, funFact: "This is where most freshmen live during their first year at Mines." }, 
+  { name: "Campus Library and Housing", lat: 39.751473031196014, lng: -105.2234631558418, funFact: "This is where most freshmen live during their first year at Mines." },
+  { name: "Guggenheim Hall", lat: 39.751257, lng: -105.222349, funFact: "This is where most freshmen live during their first year at Mines." },
+  { name: "Kafadar Commons", lat: 39.75121544675948,lng: -105.22152486379171, funFact: "This is where most freshmen live during their first year at Mines." },
+  { name: "Academic Buildings (2)", lat: 39.75231274085103, lng: -105.22070920902605, funFact: "This is where most freshmen live during their first year at Mines." },
+  { name: "Academic Building (3)", lat: 39.75162837004105, lng: -105.22050598386501, funFact: "This is where most freshmen live during their first year at Mines." },
+  { name: "Student Support Services", lat: 39.748984253433946, lng: -105.22053401143191, funFact: "This is where most freshmen live during their first year at Mines."}
 ];
 
 const buildingCoordinates = {
@@ -218,6 +218,24 @@ function getRoute() {
         sessionStorage.setItem("lat", stop.lat);
         sessionStorage.setItem("lng", stop.lng);
   
+        // Display fun fact and directions
+        const directionsPanel = document.getElementById("directions-panel");
+        const factsPanel = document.getElementById("facts-panel");
+        directionsPanel.classList.add("block");
+        factsPanel.classList.add("block");
+        directionsPanel.innerHTML = `
+          <h3>Next Stop: ${stop.name}</h3>
+          <h4>Directions:</h4>
+        `;
+        factsPanel.innerHTML=`
+        <h4>Fun Facts: ${stop.funFact}</h4>
+        `;
+
+        const steps = result.routes[0].legs[0].steps;
+        for (let i = 0; i < steps.length; i++) {
+          directionsPanel.innerHTML += `<p>${steps[i].instructions}</p>`;
+        }
+        
         currentStopIndex++;
       } else {
         alert("Directions request failed: " + status);
