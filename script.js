@@ -228,7 +228,9 @@ window.onload = initMap;
 
 
 // FLOOR PLAN HIGHLIGHTS
-function highlightRoom() {
+
+// Hill Highlights
+function hillHighlightRoom() {
     let input = document.getElementById("roomInput").value.trim().toUpperCase();
     console.log(input);
     // Define room mapping
@@ -332,6 +334,53 @@ function highlightRoom() {
 
     }
 }
+
+// Highlight McNeil Rooms
+function mcneilHighlightRoom() {
+  let input = document.getElementById("roomInput").value.trim().toUpperCase();
+  console.log(input);
+  // Define room mapping
+  let rooms = new Set(["105", "107", "108", "109", "111", "112", "113", 
+  "114", "115", "116", "117", "118", "119", "121", "122", "123", "124", "125", "126",
+  "127", "128", "129", "130", "131", "132", "133", "134", "135", "136",
+  "137", "138", "139", "140", "141", "142", "204", "213", "214", "217",
+   "218", "219", "215", "216", "220", "221", "222", "223", "313", "314",
+   "317", "318", "319", "315", "316", "320", "321", "322", "323"]);
+
+
+  // Hide all rooms first
+  document.querySelectorAll('.highlight').forEach(room => room.classList.add('hidden'));
+  const firstDigit = input.charAt(0); // get the first character
+
+if (firstDigit == '2' &&  rooms.has(input)) {
+  document.getElementById('floor2').scrollIntoView({ behavior: 'smooth' });
+} else if (firstDigit == '3' &&  rooms.has(input)) {
+  document.getElementById('floor3').scrollIntoView({ behavior: 'smooth' });
+} else {
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+  if (input == "") {
+      emptyPopup();
+  }
+  else if (rooms.has(input)) {
+      document.getElementById(input).classList.remove('hidden');
+  } else {
+          showPopup();
+
+  }
+}
+
+// Chauvenet Highlight 
+
+
+document.getElementById('backToTop').addEventListener('click', function() {
+  window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+  });
+});
 
 function emptyPopup() {
     document.getElementById("emptyPopup").style.display = "block";

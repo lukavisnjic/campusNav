@@ -95,9 +95,39 @@
             </aside>
 
             <div class="content">
-                <p>
-                    Chauvenet
+                <div>
+                    <input type="text" id="roomInput" placeholder="Enter room number">
+                    <button id="roomIn" onclick="chauvenetHighlightRoom()">Find Room</button>
+                </div>
+
+                <p class="floor-header">
+                    Basement
                 </p>
+
+                <svg id="floor1" width="900" height="600">
+                    <image href="Graphics/basementChauvenet.svg" width="900" height="600" />
+
+                </svg>
+
+                <p class="floor-header">
+                    First Floor
+                </p>
+            
+                <svg id="floor2" width="900" height="600">
+                    <image href="Graphics/1chauvenet.svg" width="900" height="600" />
+
+                </svg>
+
+                <p class="floor-header">
+                    Second Floor
+                </p>
+            
+                <svg id="floor3" width="900" height="600">
+                    <image href="Graphics/2chauvenet.svg" width="900" height="600" />
+
+                </svg>
+            
+                    <button id="backToTop">Back to Top</button>
             </div>
         </div>
         <script src="script.js"></script>

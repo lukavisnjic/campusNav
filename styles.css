@@ -192,6 +192,7 @@ body {
 
 .floor-header {
   font-size: xx-large;
+  color: #00234b;
 }
 
 /* Maps */
@@ -371,9 +372,9 @@ button {
 }
 
 .popup-content {
-    background-color: white; /* White background */
-border: 2px solid black; /* Black border around the popup */
-padding: 40px;
-border-radius: 8px; /* Optional rounded corners */
-font-family: 'Courier New'
+  background-color: white; /* White background */
+  border: 2px solid black; /* Black border around the popup */
+  padding: 40px;
+  border-radius: 8px; /* Optional rounded corners */
+  font-family: 'Courier New'
 }
