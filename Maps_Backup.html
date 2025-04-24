@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Navigation</title>
+  <style>
+    #directions-panel {
+      max-height: 20%;
+      overflow-y: auto;
+      font-size: 1rem;
+      background-color: yellow;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+      display: none;
+}
+
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #map {
+      height: 80%;
+      width: 100%;
+    }
+
+    #controls {
+      padding: 1rem;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    input[type="text"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 0.6rem;
+      font-size: 1rem;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1669c1;
+    }
+
+    label {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    @media (min-width: 600px) {
+      #controls {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      input[type="text"] {
+        width: 30%;
+      }
+
+      button {
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <label>
+      <input type="checkbox" id="use-location" />
+      Use My Location
+    </label>
+    <input id="origin-input" type="text" placeholder="Enter starting location" />
+    <input id="destination-input" type="text" placeholder="Enter destination" />
+    <button onclick="getRoute()">Get Directions</button>
+  </div>
+  <div id="map"></div>
+  <div id="directions-panel" style="padding: 1rem;"></div>
+
+
+  <script>
+    let map, directionsService, directionsRenderer;
+    let userLocation = null;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 39.740, lng: -105.222 }, // Replace with your campus center
+        zoom: 16,
+      });
+
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer();
+      directionsRenderer.setMap(map);
+
+      const originInput = document.getElementById("origin-input");
+      const destinationInput = document.getElementById("destination-input");
+      const useLocationCheckbox = document.getElementById("use-location");
+
+      new google.maps.places.Autocomplete(originInput);
+      new google.maps.places.Autocomplete(destinationInput);
+
+      useLocationCheckbox.addEventListener("change", () => {
+        if (useLocationCheckbox.checked) {
+          originInput.disabled = true;
+          originInput.placeholder = "Using your location...";
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+            },
+            () => {
+              alert("Could not get your location.");
+              useLocationCheckbox.checked = false;
+              originInput.disabled = false;
+              originInput.placeholder = "Enter starting location";
+            }
+          );
+        } else {
+          originInput.disabled = false;
+          originInput.placeholder = "Enter starting location";
+          userLocation = null;
+        }
+      });
+    }
+
+    function getRoute() {
+      const destination = document.getElementById("destination-input").value;
+      const useLocation = document.getElementById("use-location").checked;
+      const originText = document.getElementById("origin-input").value;
+      const directionsPanel = document.getElementById("directions-panel");
+
+      let origin = useLocation ? userLocation : originText;
+
+      if (!origin || !destination) {
+        alert("Please provide both origin and destination.");
+        return;
+      }
+
+      directionsService.route(
+        {
+          origin: origin,
+          destination: destination,
+          travelMode: google.maps.TravelMode.WALKING,
+        },
+        (response, status) => {
+          if (status === "OK") {
+            directionsRenderer.setDirections(response);
+
+            // Show worded directions
+            const steps = response.routes[0].legs[0].steps;
+            directionsPanel.innerHTML = "<h3>Directions:</h3>";
+            for (let i = 0; i < steps.length; i++) {
+              directionsPanel.innerHTML += `<p>${steps[i].instructions}</p>`;
+            }
+          } else {
+            alert("Directions request failed due to " + status);
+            console.error("Directions error:", status);
+          }
+        }
+      );
+    }
+
+  </script>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4OLviUVC0EMKEnyok7HmY17naKMkoen8&libraries=places&callback=initMap"
+    async
+    defer
+  ></script>
+</body>
+</html>
