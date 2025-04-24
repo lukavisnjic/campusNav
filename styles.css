@@ -41,13 +41,13 @@ body {
 
 .content {
   margin-left: 20vw;
-  width: calc(100vw - 18vw);
+  width: calc(100vw - 20vw);
   transition: all 0.4s ease;
 }
 
 .sidebar.collapsed ~ .content {
-  margin-left: 85px;
-  width: calc(100vw - 85px);
+  margin-left: 100px;
+  width: calc(100vw - 100px);
 }
 
 .sidebar {
@@ -61,7 +61,7 @@ body {
   transition: ease 0.4s;
 }
 .sidebar.collapsed {
-  width: 85px;
+  width: 100px;
 }
 
 .sidebar-header {
