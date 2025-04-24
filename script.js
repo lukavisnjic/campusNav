@@ -30,6 +30,26 @@ const stops = [
   { name: "Student Support Services", lat: 39.748984253433946, lng: -105.22053401143191}
 ];
 
+const buildingCoordinates = {
+  "AH": {name: "Alderson Hall", lat: 39.75060062333236, lng: -105.22095712675213},
+  "LB": {name: "Arthur Lakes Library", lat :39.75156750186049, lng: -105.22302142606492},
+  //"VC":
+  //"SC":
+  //"BE":
+  //"BB":
+  //"BBW":
+  //"CTLM":
+  //"CO":
+  //"EMI":
+  //"EH":
+  //"GC":
+  "CK": { name: "CoorsTek Center", lat: 39.750711036468246, lng:  -105.22111556064941},
+  "CH": { name: "Chauvenet Hall", lat: 39.75184897031731, lng: -105.22273950534914},
+  "HH": { name: "Hill Hall", lat: 39.7522091986264, lng: -105.22109201006752 },
+  "MC": { name: "McNeil Hall", lat: 39.75121866915423, lng: -105.22404611710994},
+  // Add more building codes here...
+};
+
 
 
 function initMap() {
@@ -93,6 +113,11 @@ function initMap() {
       userLocation = null;
     }
   });
+
+  window.map = map;
+  window.directionsService = directionsService;
+  window.directionsRenderer = directionsRenderer;
+
 }
 
 
@@ -224,7 +249,7 @@ function restartTour() {
 
 document.getElementById("next-stop-btn").addEventListener("click", guideToNextStop);
 document.getElementById("restart-tour-btn").addEventListener("click", restartTour);
-window.onload = initMap;
+// window.onload = initMap;
 
 
 // FLOOR PLAN HIGHLIGHTS
@@ -373,7 +398,43 @@ window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Chauvenet Highlight 
+function chauvenetHighlightRoom() {
+  let input = document.getElementById("roomInput").value.trim().toUpperCase();
+  console.log(input);
+  // Define room mapping
+  let rooms = new Set(["132", "130", "128", "126", "124", "122", "120", "133", "131", "127",
+       "125", "123", "123A", "119", "117", "156", "155", "151", "149", "147", "145",
+       "141", "141A", "141B", "141C", "143", "143A", "143B", "143C", "161", "161A",
+       "158", "160", "180", "182", "184", "186", "194", "194A", "177", "196", "179",
+       "192", "178", "187", "197", "195", "193", "189", "178A", "187A", "234", "232",
+       "236", "224", "222", "220", "226", "230", "235", "233", "231", "223", "221", "217", "215",
+       "263", "265", "267", "269", "271", "273", "276", "262", "264", "266", "268", "270", "272",
+       "274", "275", "278", "279", "280", "68", "66", "42", "42A", "42B", "44", "46", "48", 
+       "70", "70A", "73", "50A", "50", "54", "65", "69", "67", "65", "51", "57", "60", "57A",
+       "57A", "53", "57B", "55", "59", "61", "63", "50B"
+  ]);
+  
+  document.querySelectorAll('.highlight').forEach(room => room.classList.add('hidden'));
+  const firstDigit = input.charAt(0); // get the first character
 
+if (firstDigit == '2' &&  rooms.has(input)) {
+  document.getElementById('floor2').scrollIntoView({ behavior: 'smooth' });
+} else if (firstDigit != '1' &&  rooms.has(input)) {
+  document.getElementById('floor3').scrollIntoView({ behavior: 'smooth' });
+} else {
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+  if (input == "") {
+      emptyPopup();
+  }
+  else if (rooms.has(input)) {
+      document.getElementById(input).classList.remove('hidden');
+  } else {
+          showPopup();
+
+  }
+}
 
 document.getElementById('backToTop').addEventListener('click', function() {
   window.scrollTo({
@@ -397,3 +458,95 @@ function showPopup() {
 function closePopup() {
     document.getElementById("errorPopup").style.display = "none";
 }
+
+// Schedule Viewer
+
+function addClassBox() {
+  const container = document.getElementById("class-inputs");
+  const div = document.createElement("div");
+  div.className = "class-input";
+  div.innerHTML = `<input type="text" class="class-box" placeholder="Enter class (e.g., CK 151)" />`;
+  container.appendChild(div);
+}
+
+function routeClasses() {
+  // Use the global renderer
+  if (!directionsRenderer) {
+    directionsRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map);
+  } else {
+    directionsRenderer.setMap(map); // Re-attach if needed
+  }
+
+  const inputs = document.querySelectorAll(".class-box");
+  const waypoints = [];
+
+  // Step 1: Collect destinations
+  inputs.forEach(input => {
+    const value = input.value.trim().toUpperCase();
+    if (value === "") return;
+
+    const code = value.split(" ")[0];
+    const building = buildingCoordinates[code];
+
+    if (building) {
+      waypoints.push({
+        location: new google.maps.LatLng(building.lat, building.lng),
+        stopover: true
+      });
+    }
+  });
+
+  if (waypoints.length === 0) {
+    alert("No valid class destinations.");
+    return;
+  }
+
+  const useLocation = document.getElementById("use-location").checked;
+  const originInput = document.getElementById("origin-input").value;
+
+  function buildRoute(origin) {
+    const request = {
+      origin: origin,
+      destination: waypoints[waypoints.length - 1].location,
+      waypoints: waypoints.slice(0, -1),
+      travelMode: google.maps.TravelMode.WALKING,
+    };
+
+    directionsService.route(request, (result, status) => {
+      if (status === "OK") {
+        directionsRenderer.setDirections(result);
+        console.log("Directions displayed successfully");
+      } else {
+        alert("Directions failed: " + status);
+        console.error("Directions error:", status);
+      }
+    });
+  }
+
+  // Step 2: Get origin
+  if (useLocation && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userLoc = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        buildRoute(userLoc);
+      },
+      () => alert("Could not get your location.")
+    );
+  } else if (originInput) {
+    buildRoute(originInput);  // Let Google Maps geocode it
+  } else {
+    alert("Provide a starting location or enable location.");
+  }
+}
+
+
+
+
+window.initMap = initMap;
+window.locateMultipleBoxes = locateMultipleBoxes;
+window.addClassBox = addClassBox;
+window.routeClasses = routeClasses;

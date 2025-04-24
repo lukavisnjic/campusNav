@@ -97,7 +97,7 @@
             <div class="content">
                 <div>
                     <input type="text" id="roomInput" placeholder="Enter room number">
-                    <button id="roomIn" onclick="highlightRoom()">Find Room</button>
+                    <button id="roomIn" onclick="chauvenetHighlightRoom()">Find Room</button>
                 </div>
 
                 <p class="floor-header">
@@ -106,60 +106,57 @@
 
                 <svg id="floorPlan" width="900" height="600">
                     <image href="Graphics/1chauvenet.svg" width="900" height="600" />
-                    
-                    <rect id="132" class="highlight hidden" x="204" y="12" width="54" height="43"/>
-                    <rect id="130" class="highlight hidden" x="259" y="12" width="56" height="58"/>
-                    <rect id="128" class="highlight hidden" x="318" y="12" width="54" height="58"/>
-                    <rect id="126" class="highlight hidden" x="373" y="12" width="57" height="58"/>
-                    <rect id="124" class="highlight hidden" x="480" y="12" width="56" height="58"/>
-                    <rect id="122" class="highlight hidden" x="538" y="12" width="56" height="58"/>
-                    <rect id="133" class="highlight hidden" x="205" y="100" width="52" height="58"/>
-                    <rect id="131" class="highlight hidden" x="259" y="100" width="56" height="58"/>
-                    <rect id="127" class="highlight hidden" x="316" y="100" width="114" height="58"/>
-                    <rect id="125" class="highlight hidden" x="480" y="100" width="56" height="58"/>
-                    <rect id="123" class="highlight hidden" x="538" y="100" width="56" height="58"/>
-                    <rect id="120" class="highlight hidden" x="598" y="12" width="108" height="97"/>
-                    <rect id="123A" class="highlight hidden" x="582" y="98" width="12" height="18"/>
-                    <rect id="119" class="highlight hidden" x="598" y="111" width="54" height="46"/>
-                    <rect id="117" class="highlight hidden" x="654" y="111" width="52" height="46"/>
-                    <rect id="156" class="highlight hidden" x="204" y="162" width="82" height="110"/>
-                    <rect id="155" class="highlight hidden" x="320" y="198" width="82" height="58"/>
-                    <rect id="151" class="highlight hidden" x="402" y="198" width="50" height="58"/>
-                    <rect id="149" class="highlight hidden" x="454" y="198" width="38" height="58"/>
-                    <rect id="147" class="highlight hidden" x="494" y="198" width="54" height="58"/>
-                    <rect id="145" class="highlight hidden" x="550" y="198" width="34" height="58"/>
-                    <rect id="141" class="highlight hidden" x="612" y="198" width="95" height="58"/>
-                    <rect id="141A" class="highlight hidden" x="628" y="258" width="80" height="44"/>
-                    <rect id="141B" class="highlight hidden" x="612" y="304" width="64" height="44"/>
-                    <rect id="141C" class="highlight hidden" x="678" y="304" width="30" height="44"/>
-                    <rect id="158" class="highlight hidden" x="204" y="304" width="82" height="44"/>
-                    <rect id="161" class="highlight hidden" x="320" y="258" width="130" height="92"/>
-                    <rect id="161A" class="highlight hidden" x="320" y="332" width="30" height="18"/>
-                    <rect id="143" class="highlight hidden" x="490" y="258" width="122" height="92"/>
-                    <rect id="143A" class="highlight hidden" x="455" y="258" width="35" height="25"/>
-                    <rect id="143B" class="highlight hidden" x="455" y="283" width="35" height="38"/>
-                    <rect id="143C" class="highlight hidden" x="455" y="323" width="30" height="26"/>
-                    <rect id="160" class="highlight hidden" x="204" y="355" width="84" height="42"/>
-                    <rect id="194A" class="highlight hidden" x="204" y="408" width="56" height="42"/>
-                    <rect id="194" class="highlight hidden" x="204" y="450" width="56" height="80"/>
-                    <rect id="196" class="highlight hidden" x="264" y="450" width="23" height="80"/>
-                    <rect id="177" class="highlight hidden" x="262" y="404" width="62" height="44"/>
-                    <rect id="179" class="highlight hidden" x="290" y="450" width="32" height="44"/>
-                    <rect id="192" class="highlight hidden" x="290" y="495" width="32" height="32"/>
-                    <rect id="197" class="highlight hidden" x="204" y="550" width="64" height="40"/>
-                    <rect id="195" class="highlight hidden" x="270" y="550" width="52" height="40"/>
-                    <rect id="193" class="highlight hidden" x="326" y="550" width="34" height="42"/>
-                    <rect id="180" class="highlight hidden" x="366" y="360" width="74" height="76"/>
-                    <rect id="182" class="highlight hidden" x="444" y="360" width="114" height="76"/>
-                    <rect id="184" class="highlight hidden" x="560" y="356" width="60" height="78"/>
-                    <rect id="186" class="highlight hidden" x="622" y="356" width="86" height="110"/>
-                    <rect id="187" class="highlight hidden" x="622" y="466" width="86" height="94"/>
-                    <rect id="178" class="highlight hidden" x="364" y="438" width="256" height="120"/>
-                    <rect id="189" class="highlight hidden" x="456" y="558" width="120" height="34"/>
-                    <rect id="178A" class="highlight hidden" x="580" y="558" width="60" height="34"/>
-                    <rect id="187A" class="highlight hidden" x="642" y="558" width="64" height="34"/>
-                    
-                    
+                        <rect id="132" class="highlight hidden" x="204" y="12" width="54" height="43"/>
+                        <rect id="130" class="highlight hidden" x="259" y="12" width="56" height="58"/>
+                        <rect id="128" class="highlight hidden" x="318" y="12" width="54" height="58"/>
+                        <rect id="126" class="highlight hidden" x="373" y="12" width="57" height="58"/>
+                        <rect id="124" class="highlight hidden" x="480" y="12" width="56" height="58"/>
+                        <rect id="122" class="highlight hidden" x="538" y="12" width="56" height="58"/>
+                        <rect id="133" class="highlight hidden" x="205" y="100" width="52" height="58"/>
+                        <rect id="131" class="highlight hidden" x="259" y="100" width="56" height="58"/>
+                        <rect id="127" class="highlight hidden" x="316" y="100" width="114" height="58"/>
+                        <rect id="125" class="highlight hidden" x="480" y="100" width="56" height="58"/>
+                        <rect id="123" class="highlight hidden" x="538" y="100" width="56" height="58"/>
+                        <rect id="120" class="highlight hidden" x="598" y="12" width="108" height="97"/>
+                        <rect id="123A" class="highlight hidden" x="582" y="98" width="12" height="18"/>
+                        <rect id="119" class="highlight hidden" x="598" y="111" width="54" height="46"/>
+                        <rect id="117" class="highlight hidden" x="654" y="111" width="52" height="46"/>
+                        <rect id="156" class="highlight hidden" x="204" y="162" width="82" height="110"/>
+                        <rect id="155" class="highlight hidden" x="320" y="198" width="82" height="58"/>
+                        <rect id="151" class="highlight hidden" x="402" y="198" width="50" height="58"/>
+                        <rect id="149" class="highlight hidden" x="454" y="198" width="38" height="58"/>
+                        <rect id="147" class="highlight hidden" x="494" y="198" width="54" height="58"/>
+                        <rect id="145" class="highlight hidden" x="550" y="198" width="34" height="58"/>
+                        <rect id="141" class="highlight hidden" x="612" y="198" width="95" height="58"/>
+                        <rect id="141A" class="highlight hidden" x="628" y="258" width="80" height="44"/>
+                        <rect id="141B" class="highlight hidden" x="612" y="304" width="64" height="44"/>
+                        <rect id="141C" class="highlight hidden" x="678" y="304" width="30" height="44"/>
+                        <rect id="158" class="highlight hidden" x="204" y="304" width="82" height="44"/>
+                        <rect id="161" class="highlight hidden" x="320" y="258" width="130" height="92"/>
+                        <rect id="161A" class="highlight hidden" x="320" y="332" width="30" height="18"/>
+                        <rect id="143" class="highlight hidden" x="490" y="258" width="122" height="92"/>
+                        <rect id="143A" class="highlight hidden" x="455" y="258" width="35" height="25"/>
+                        <rect id="143B" class="highlight hidden" x="455" y="283" width="35" height="38"/>
+                        <rect id="143C" class="highlight hidden" x="455" y="323" width="30" height="26"/>
+                        <rect id="160" class="highlight hidden" x="204" y="355" width="84" height="42"/>
+                        <rect id="194A" class="highlight hidden" x="204" y="408" width="56" height="42"/>
+                        <rect id="194" class="highlight hidden" x="204" y="450" width="56" height="80"/>
+                        <rect id="196" class="highlight hidden" x="264" y="450" width="23" height="80"/>
+                        <rect id="177" class="highlight hidden" x="262" y="404" width="62" height="44"/>
+                        <rect id="179" class="highlight hidden" x="290" y="450" width="32" height="44"/>
+                        <rect id="192" class="highlight hidden" x="290" y="495" width="32" height="32"/>
+                        <rect id="197" class="highlight hidden" x="204" y="550" width="64" height="40"/>
+                        <rect id="195" class="highlight hidden" x="270" y="550" width="52" height="40"/>
+                        <rect id="193" class="highlight hidden" x="326" y="550" width="34" height="42"/>
+                        <rect id="180" class="highlight hidden" x="366" y="360" width="74" height="76"/>
+                        <rect id="182" class="highlight hidden" x="444" y="360" width="114" height="76"/>
+                        <rect id="184" class="highlight hidden" x="560" y="356" width="60" height="78"/>
+                        <rect id="186" class="highlight hidden" x="622" y="356" width="86" height="110"/>
+                        <rect id="187" class="highlight hidden" x="622" y="466" width="86" height="94"/>
+                        <rect id="178" class="highlight hidden" x="364" y="438" width="256" height="120"/>
+                        <rect id="189" class="highlight hidden" x="456" y="558" width="120" height="34"/>
+                        <rect id="178A" class="highlight hidden" x="580" y="558" width="60" height="34"/>
+                        <rect id="187A" class="highlight hidden" x="642" y="558" width="64" height="34"/>
                 </svg>
 
                 <p class="floor-header">
@@ -199,34 +196,34 @@
 
                 <svg id="floor3" width="900" height="600">
                     <image href="graphics/basementChauvenet.svg" width="900" height="600" />
-                    <rect id="68" class="highlight hidden" x="122" y="122" width="30" height="136"/>
-                    <rect id="66" class="highlight hidden" x="158" y="186" width="42" height="66"/>
-                    <rect id="42" class="highlight hidden" x="202" y="122" width="322" height="130"/>
-                    <rect id="42A" class="highlight hidden" x="652" y="178" width="22" height="76"/>
-                    <rect id="42B" class="highlight hidden" x="526" y="122" width="90" height="36"/>
-                    <rect id="44" class="highlight hidden" x="622" y="50" width="38" height="56"/>
-                    <rect id="46" class="highlight hidden" x="682" y="116" width="62" height="122"/>
-                    <rect id="48" class="highlight hidden" x="682" y="240" width="62" height="54"/>
-                    <rect id="70" class="highlight hidden" x="122" y="260" width="486" height="34"/>
-                    <rect id="70A" class="highlight hidden" x="608" y="260" width="46" height="28"/>
-                    <rect id="73" class="highlight hidden" x="122" y="298" width="34" height="234"/>
-                    <rect id="50A" class="highlight hidden" x="158" y="298" width="22" height="48"/>
-                    <rect id="50" class="highlight hidden" x="184" y="298" width="36" height="46"/>
-                    <rect id="54" class="highlight hidden" x="220" y="322" width="72" height="22"/>
-                    <rect id="69" class="highlight hidden" x="158" y="344" width="66" height="184"/>
-                    <rect id="67" class="highlight hidden" x="228" y="344" width="66" height="184"/>
-                    <rect id="65" class="highlight hidden" x="296" y="320" width="132" height="210"/>
-                    <rect id="51" class="highlight hidden" x="436" y="298" width="174" height="46"/>
-                    <rect id="63" class="highlight hidden" x="434" y="480" width="30" height="52"/>
-                    <rect id="61" class="highlight hidden" x="476" y="490" width="50" height="42"/>
-                    <rect id="59" class="highlight hidden" x="534" y="482" width="90" height="46"/>
-                    <rect id="57" class="highlight hidden" x="434" y="346" width="130" height="134"/>
-                    <rect id="57A" class="highlight hidden" x="566" y="346" width="86" height="66"/>
-                    <rect id="57B" class="highlight hidden" x="566" y="412" width="58" height="66"/>
-                    <rect id="60" class="highlight hidden" x="612" y="298" width="38" height="46"/>
-                    <rect id="53" class="highlight hidden" x="654" y="346" width="88" height="58"/>
-                    <rect id="55" class="highlight hidden" x="640" y="426" width="72" height="72"/>
-                    <rect id="50B" class="highlight hidden" x="698" y="298" width="48" height="46"/>
+                        <rect id="68" class="highlight hidden" x="122" y="122" width="30" height="136"/>
+                        <rect id="66" class="highlight hidden" x="158" y="186" width="42" height="66"/>
+                        <rect id="42" class="highlight hidden" x="202" y="122" width="322" height="130"/>
+                        <rect id="42A" class="highlight hidden" x="652" y="178" width="22" height="76"/>
+                        <rect id="42B" class="highlight hidden" x="526" y="122" width="90" height="36"/>
+                        <rect id="44" class="highlight hidden" x="622" y="50" width="38" height="56"/>
+                        <rect id="46" class="highlight hidden" x="682" y="116" width="62" height="122"/>
+                        <rect id="48" class="highlight hidden" x="682" y="240" width="62" height="54"/>
+                        <rect id="70" class="highlight hidden" x="122" y="260" width="486" height="34"/>
+                        <rect id="70A" class="highlight hidden" x="608" y="260" width="46" height="28"/>
+                        <rect id="73" class="highlight hidden" x="122" y="298" width="34" height="234"/>
+                        <rect id="50A" class="highlight hidden" x="158" y="298" width="22" height="48"/>
+                        <rect id="50" class="highlight hidden" x="184" y="298" width="36" height="46"/>
+                        <rect id="54" class="highlight hidden" x="220" y="322" width="72" height="22"/>
+                        <rect id="69" class="highlight hidden" x="158" y="344" width="66" height="184"/>
+                        <rect id="67" class="highlight hidden" x="228" y="344" width="66" height="184"/>
+                        <rect id="65" class="highlight hidden" x="296" y="320" width="132" height="210"/>
+                        <rect id="51" class="highlight hidden" x="436" y="298" width="174" height="46"/>
+                        <rect id="63" class="highlight hidden" x="434" y="480" width="30" height="52"/>
+                        <rect id="61" class="highlight hidden" x="476" y="490" width="50" height="42"/>
+                        <rect id="59" class="highlight hidden" x="534" y="482" width="90" height="46"/>
+                        <rect id="57" class="highlight hidden" x="434" y="346" width="130" height="134"/>
+                        <rect id="57A" class="highlight hidden" x="566" y="346" width="86" height="66"/>
+                        <rect id="57B" class="highlight hidden" x="566" y="412" width="58" height="66"/>
+                        <rect id="60" class="highlight hidden" x="612" y="298" width="38" height="46"/>
+                        <rect id="53" class="highlight hidden" x="654" y="346" width="88" height="58"/>
+                        <rect id="55" class="highlight hidden" x="640" y="426" width="72" height="72"/>
+                        <rect id="50B" class="highlight hidden" x="698" y="298" width="48" height="46"/>
                 </svg>
             
                     <button id="backToTop">Back to Top</button>
@@ -248,78 +245,7 @@
                 <p id="roomInfo"></p>
             </div>
         </div>
-        <script>
-            var input = document.getElementById("roomInput");
-
-            input.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                document.getElementById("roomIn").click();
-                }
-            });
-
-            function highlightRoom() {
-                let input = document.getElementById("roomInput").value.trim().toUpperCase();
-                console.log(input);
-                // Define room mapping
-                let rooms = new Set(["132", "130", "128", "126", "124", "122", "120", "133", "131", "127",
-                     "125", "123", "123A", "119", "117", "156", "155", "151", "149", "147", "145",
-                     "141", "141A", "141B", "141C", "143", "143A", "143B", "143C", "161", "161A",
-                     "158", "160", "180", "182", "184", "186", "194", "194A", "177", "196", "179",
-                     "192", "178", "187", "197", "195", "193", "189", "178A", "187A", "234", "232",
-                     "236", "224", "222", "220", "226", "230", "235", "233", "231", "223", "221", "217", "215",
-                     "263", "265", "267", "269", "271", "273", "276", "262", "264", "266", "268", "270", "272",
-                     "274", "275", "278", "279", "280", "68", "66", "42", "42A", "42B", "44", "46", "48", 
-                     "70", "70A", "73", "50A", "50", "54", "65", "69", "67", "65", "51", "57", "60", "57A",
-                     "57A", "53", "57B", "55", "59", "61", "63", "50B"
-                ]);
-                
-                document.querySelectorAll('.highlight').forEach(room => room.classList.add('hidden'));
-                const firstDigit = input.charAt(0); // get the first character
-            
-            if (firstDigit == '2' &&  rooms.has(input)) {
-                document.getElementById('floor2').scrollIntoView({ behavior: 'smooth' });
-            } else if (firstDigit != '1' &&  rooms.has(input)) {
-                document.getElementById('floor3').scrollIntoView({ behavior: 'smooth' });
-            } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-                if (input == "") {
-                    emptyPopup();
-                }
-                else if (rooms.has(input)) {
-                    document.getElementById(input).classList.remove('hidden');
-                } else {
-                        showPopup();
-
-                }
-            }
-
-            document.getElementById('backToTop').addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth' 
-                });
-            });
-
-
-            function emptyPopup() {
-                document.getElementById("emptyPopup").style.display = "block";
-            }
-
-            function closeEmptyPopup() {
-                document.getElementById("emptyPopup").style.display = "none";
-            }
-
-            function showPopup() {
-                document.getElementById("errorPopup").style.display = "block";
-            }
-
-            function closePopup() {
-                document.getElementById("errorPopup").style.display = "none";
-            }
-        </script>
+        <script src="script.js"></script>
     </body>
 
 

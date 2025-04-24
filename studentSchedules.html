@@ -95,9 +95,27 @@
             </aside>
 
             <div class="content">
-                <p>
-                    Schedule Viewer
-                </p>
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4OLviUVC0EMKEnyok7HmY17naKMkoen8&libraries=places&callback=initMap"
+                    async
+                    defer
+                ></script>
+                <div id="controls">
+                    <label>
+                        <input type="checkbox" id="use-location" />
+                        Use my current location
+                    </label>
+                    <input type="text" id="origin-input" placeholder="Enter your starting location" />
+                    
+                    <div id="class-inputs">
+                        <div class="class-input">
+                            <input type="text" class="class-box" placeholder="Enter class (e.g., CK 151)" />
+                        </div>
+                    </div>
+                    <button onclick="addClassBox()">Add Another Class</button>
+                    <button onclick="routeClasses()">Locate Classes</button>
+                </div>
+                <div id="map"></div>
             </div>
         </div>
         <script src="script.js"></script>

@@ -378,3 +378,17 @@ button {
   border-radius: 8px; /* Optional rounded corners */
   font-family: 'Courier New'
 }
+
+/* Schedule Viewer */
+
+#class-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.class-input input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
