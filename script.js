@@ -33,21 +33,27 @@ const stops = [
 const buildingCoordinates = {
   "AH": {name: "Alderson Hall", lat: 39.75060062333236, lng: -105.22095712675213},
   "LB": {name: "Arthur Lakes Library", lat :39.75156750186049, lng: -105.22302142606492},
-  //"VC":
-  //"SC":
-  //"BE":
-  //"BB":
-  //"BBW":
-  //"CTLM":
-  //"CO":
-  //"EMI":
-  //"EH":
-  //"GC":
-  "CK": { name: "CoorsTek Center", lat: 39.750711036468246, lng:  -105.22111556064941},
+  "VC": {name: "Beck Venture Center", lat: 39.75111973555342, lng: -105.21771579935759},
+  "SC": {name: "Ben H. Parker Student Center", lat: 39.749753648507706, lng: -105.22308140125382},
+  "BE": {name: "Berthoud Hall", lat: 39.750425497113085, lng: -105.22238186560564},
+  "BB": {name: "Brown Hall", lat: 39.74996383347052, lng: -105.22149608241227},
+  "BBW": {name: "Brown Hall West", lat: 39.74958995692275, lng: -105.22209586061557},
+  "CTLM": {name: "Center for Technology and Learning Media", lat: 39.75068000176023, lng: -105.21948176070593},
   "CH": { name: "Chauvenet Hall", lat: 39.75184897031731, lng: -105.22273950534914},
+  "CO": {name: "Coolbaugh Hall", lat: 39.75234401610809, lng: -105.22274160224116},
+  "CK": { name: "CoorsTek Center", lat: 39.750711036468246, lng:  -105.22111556064941},
+  "EMI": {name: "Earth Mechanics Institute", lat: 39.75102556820169, lng: -105.22577542291957},
+  "EH": {name: "Engineering Hall", lat: 39.752643601479235, lng: -105.2202662362475},
+  "GC": {name: "Green Center", lat: 39.75138033699135, lng: -105.2206617272932},
+  "GH": {name: "Guggenheim Hall", lat: 39.75098001423123, lng: -105.22267199529637},
   "HH": { name: "Hill Hall", lat: 39.7522091986264, lng: -105.22109201006752 },
+  "IM": {name: "Intramural Fields", lat: 39.748570964653524, lng: -105.22341341681604},
+  "LB": {name: "Labriola Innovation Hub", lat: 39.7511327443204, lng: -105.22587749995499},
+  "MZ": {name: "Marquez Hall", lat: 39.75086908183251, lng: -105.22007027776368},
   "MC": { name: "McNeil Hall", lat: 39.75121866915423, lng: -105.22404611710994},
-  // Add more building codes here...
+  "SH": {name: "Stratton Hall", lat: 39.752022706078996, lng: -105.22188511071849},
+  "RC": {name: "Student Recreation Center", lat: 39.74960309702438, lng: -105.22263514186936},
+  "GY": {name: "Volk Gymnasium", lat: 39.75175660291034, lng: -105.22412935817596}
 };
 
 
