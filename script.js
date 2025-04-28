@@ -16,18 +16,18 @@ let currentStopIndex = 0;
 let lat, lng = 0.0;
 
 const stops = [
-  { name: "Campus Housing", lat: 39.74826511866739, lng: -105.22111495352556, funFact: "This is where most freshmen live during their first year at Mines."},
-  { name: "Mines Dining Hall", lat: 39.74864769731091, lng: -105.2214090874086, funFact: "This is where most freshmen live during their first year at Mines." },
-  { name: "Student Support and Community", lat: 39.748906, lng: -105.221917, funFact: "This is where most freshmen live during their first year at Mines."  },
-  { name: "Academic Buildings (1)", lat: 39.749520, lng: -105.221809, funFact: "This is where most freshmen live during their first year at Mines." }, 
-  { name: "Student Recreation Center", lat: 39.74967627631938, lng: -105.22257902132645, funFact: "This is where most freshmen live during their first year at Mines." },
-  { name: "Ben Parker Student Center", lat: 39.7502421305587, lng: -105.22318118861799, funFact: "This is where most freshmen live during their first year at Mines." }, 
-  { name: "Campus Library and Housing", lat: 39.751473031196014, lng: -105.2234631558418, funFact: "This is where most freshmen live during their first year at Mines." },
-  { name: "Guggenheim Hall", lat: 39.751257, lng: -105.222349, funFact: "This is where most freshmen live during their first year at Mines." },
-  { name: "Kafadar Commons", lat: 39.75121544675948,lng: -105.22152486379171, funFact: "This is where most freshmen live during their first year at Mines." },
-  { name: "Academic Buildings (2)", lat: 39.75231274085103, lng: -105.22070920902605, funFact: "This is where most freshmen live during their first year at Mines." },
-  { name: "Academic Building (3)", lat: 39.75162837004105, lng: -105.22050598386501, funFact: "This is where most freshmen live during their first year at Mines." },
-  { name: "Student Support Services", lat: 39.748984253433946, lng: -105.22053401143191, funFact: "This is where most freshmen live during their first year at Mines."}
+  { name: "Campus Housing", lat: 39.74826511866739, lng: -105.22111495352556, funFact: "Welcome to Campus Housing! Most freshmen live here during their first year. It's a great way to meet new friends and be right in the heart of campus life."},
+  { name: "Mines Dining Hall", lat: 39.74864769731091, lng: -105.2214090874086, funFact: "Just a short walk away is the Mines Dining Hall, where students gather for meals, coffee breaks, and social time. It's the central hub for eating on campus." },
+  { name: "Student Support and Community", lat: 39.748906, lng: -105.221917, funFact: "Here you'll find offices dedicated to student wellness, diversity programs, and academic support. Mines makes sure you're never on your own — there's always help if you need it."  },
+  { name: "Academic Buildings (1)", lat: 39.749520, lng: -105.221809, funFact: "Brown Hall is one of the most important academic buildings at Mines. It houses many classrooms, computer labs, and faculty offices for disciplines like engineering, physics, and computer science. Additionally, it holds the Maker Space where you are able to 3d print and craft various things. You'll likely have your first-year classes here!" }, 
+  { name: "Student Recreation Center", lat: 39.74967627631938, lng: -105.22257902132645, funFact: "Take a break from studying at the Rec Center! Whether it's lifting weights, playing basketball, or joining an intramural team, there's always something active happening here." },
+  { name: "Ben Parker Student Center", lat: 39.7502421305587, lng: -105.22318118861799, funFact: "The Student Center holds The \"Periodic Table\" which is the social heartbeat of Mines. Grab food, meet for club meetings, attend events, or just hang out between classes." }, 
+  { name: "Campus Library and Housing", lat: 39.751473031196014, lng: -105.2234631558418, funFact: "Arthur Lakes Library is perfect for studying, research, and group projects. Nearby housing options, called the \"Trads\" give students a convenient place to live close to academic resources." },
+  { name: "Guggenheim Hall", lat: 39.751257, lng: -105.222349, funFact: "Built in 1906 with a major gift from Simon Guggenheim, this iconic building features a gold-leafed dome and once housed a museum, library, and classrooms. Today, it stands as a symbol of Mines' history and the legacy of Colorado's mineral wealth. " },
+  { name: "Kafadar Commons", lat: 39.75121544675948,lng: -105.22152486379171, funFact: "Kafadar Commons — or \"Kaf\" — is the grassy open space where students relax, play frisbee, or enjoy events like E-Days. It's the heart of outdoor campus life." },
+  { name: "Academic Buildings (2)", lat: 39.75231274085103, lng: -105.22070920902605, funFact: "This second set of academic buildings (Hill Hall, Statton Hall, and Chauvent Hall) includes departments like geology, materials science, and environmental engineering. Some of Mines' most famous research happens here!" },
+  { name: "Academic Building (3)", lat: 39.75162837004105, lng: -105.22050598386501, funFact: "This newer academic space, named Coors-Tek, is home to specialized labs and classrooms for advanced courses. Expect to spend more time here as you move into major-specific studies." },
+  { name: "Student Support Services", lat: 39.748984253433946, lng: -105.22053401143191, funFact: "Near The Starzer Center, you'll find the Mines Writing Center, where students can get help with essays, reports, and projects. Nearby is the President's House, a historic campus home that symbolizes Mines' long-standing traditions and leadership."}
 ];
 
 const buildingCoordinates = {
