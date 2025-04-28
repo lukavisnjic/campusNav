@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Campus Maps and Navigation</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    </head>
+
+    <body>
+        <header class="main-header">
+            <img class="header-logo" src = "Graphics/CSM_logo.png" width="300" height="96"/>
+        </header>
+        
+        <div class="wrapper">
+          <aside class="sidebar">
+            <header class="sidebar-header">
+                <button class="toggler sidebar-toggler">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </header>
+
+            <nav class="sidebar-nav">
+                <ul class="navlist primary-nav">
+                    <li class="nav-item">
+                        <a href="index.html" class="navlink">
+                            <span class="material-symbols-outlined">map</span>
+                            <span class="nav-label">Campus Map</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="buildings.html" class="navlink">
+                            <span class="material-symbols-outlined">apartment</span>
+                            <span class="nav-label">Building Maps</span>
+                        </a>
+                        <ul class="secondary-nav">
+                            <li class="nav-subitem">
+                                <a href="chauvenetHall.html" class="navsublink">
+                                    <span class="nav-label">Chauvenet Hall [CH]</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-subitem">
+                                <a href="hillHall.html" class="navsublink">
+                                    <span class="nav-label">Hill Hall [HH]</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-subitem">
+                                <a href="mcneilHall.html" class="navsublink">
+                                    <span class="nav-label">McNeil Hall [MC]</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="transit.html" class="navlink">
+                            <span class="material-symbols-outlined">directions_bus</span>
+                            <span class="nav-label">Ore Cart</span>
+                        </a>
+                        <ul class="secondary-nav">
+                            <li class="nav-subitem">
+                                <a href="transitRoutes.html" class="navsublink">
+                                    <span class="nav-label">Routes</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-subitem">
+                                <a href="transitSchedulesGold.html" class="navsublink">
+                                    <span class="nav-label">Gold Schedule</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-subitem">
+                              <a href="transitSchedulesSilver.html" class="navsublink">
+                                  <span class="nav-label">Silver Schedule</span>
+                              </a>
+                          </li>
+
+                          <li class="nav-subitem">
+                            <a href="transitSchedulesTungsten.html" class="navsublink">
+                                <span class="nav-label">Tungsten Schedule</span>
+                            </a>
+                          </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="selfTour.html" class="navlink">
+                            <span class="material-symbols-outlined">near_me</span>
+                            <span class="nav-label">Self-Guided Tour</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="studentSchedules.html" class="navlink">
+                            <span class="material-symbols-outlined">calendar_month</span>
+                            <span class="nav-label">Schedule Viewer</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+            <div class="content">
+                <h1 class="schedHead">Silver Route</h1>
+                <p style="margin-bottom: 20px;">DISCLAIMER: These route schedules are betas from the campus Ore Cart Office and may not reflect actual arrival times</p>
+                <h2 class="schedSubhead">Weekday Schedule</h2>
+
+                <table border="1" class="schedules">
+                    <thead>
+                      <tr style="text-align: right;">
+                        <th>Mines Park Community Center</th>
+                        <th>Survey Field</th>
+                        <th>Kafadar Commons</th>
+                        <th>K Lot</th>
+                        <th>Guggenheim Hall</th>
+                        <th>CSM Student Rec Center</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>8:00 AM</td>
+                        <td></td>
+                        <td>8:08 AM</td>
+                        <td></td>
+                        <td>8:19 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>8:13 AM</td>
+                        <td></td>
+                        <td>8:21 AM</td>
+                        <td></td>
+                        <td>8:32 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>8:26 AM</td>
+                        <td></td>
+                        <td>8:34 AM</td>
+                        <td></td>
+                        <td>8:45 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>8:39 AM</td>
+                        <td></td>
+                        <td>8:47 AM</td>
+                        <td></td>
+                        <td>8:58 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>8:52 AM</td>
+                        <td></td>
+                        <td>9:00 AM</td>
+                        <td></td>
+                        <td>9:11 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>9:05 AM</td>
+                        <td></td>
+                        <td>9:13 AM</td>
+                        <td></td>
+                        <td>9:24 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>9:18 AM</td>
+                        <td></td>
+                        <td>9:26 AM</td>
+                        <td></td>
+                        <td>9:37 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>9:31 AM</td>
+                        <td></td>
+                        <td>9:39 AM</td>
+                        <td></td>
+                        <td>9:50 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>9:44 AM</td>
+                        <td></td>
+                        <td>9:52 AM</td>
+                        <td></td>
+                        <td>10:03 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>9:57 AM</td>
+                        <td></td>
+                        <td>10:05 AM</td>
+                        <td></td>
+                        <td>10:16 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>10:10 AM</td>
+                        <td></td>
+                        <td>10:18 AM</td>
+                        <td></td>
+                        <td>10:29 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>10:23 AM</td>
+                        <td></td>
+                        <td>10:31 AM</td>
+                        <td></td>
+                        <td>10:42 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>10:36 AM</td>
+                        <td></td>
+                        <td>10:44 AM</td>
+                        <td></td>
+                        <td>10:55 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>10:49 AM</td>
+                        <td></td>
+                        <td>10:57 AM</td>
+                        <td></td>
+                        <td>11:08 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>11:02 AM</td>
+                        <td></td>
+                        <td>11:10 AM</td>
+                        <td></td>
+                        <td>11:21 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>11:15 AM</td>
+                        <td></td>
+                        <td>11:23 AM</td>
+                        <td></td>
+                        <td>11:34 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>11:28 AM</td>
+                        <td></td>
+                        <td>11:36 AM</td>
+                        <td></td>
+                        <td>11:47 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>11:41 AM</td>
+                        <td></td>
+                        <td>11:49 AM</td>
+                        <td></td>
+                        <td>12:00 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>11:54 AM</td>
+                        <td></td>
+                        <td>12:02 PM</td>
+                        <td></td>
+                        <td>12:13 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>12:07 PM</td>
+                        <td></td>
+                        <td>12:15 PM</td>
+                        <td></td>
+                        <td>12:26 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>12:20 PM</td>
+                        <td></td>
+                        <td>12:28 PM</td>
+                        <td></td>
+                        <td>12:39 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>12:33 PM</td>
+                        <td></td>
+                        <td>12:41 PM</td>
+                        <td></td>
+                        <td>12:52 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>12:46 PM</td>
+                        <td></td>
+                        <td>12:54 PM</td>
+                        <td></td>
+                        <td>13:05 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>12:59 PM</td>
+                        <td></td>
+                        <td>13:07 PM</td>
+                        <td></td>
+                        <td>13:18 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>1:12 PM</td>
+                        <td></td>
+                        <td>1:20 PM</td>
+                        <td></td>
+                        <td>1:31 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>1:25 PM</td>
+                        <td></td>
+                        <td>1:33 PM</td>
+                        <td></td>
+                        <td>1:44 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>1:38 PM</td>
+                        <td></td>
+                        <td>1:46 PM</td>
+                        <td></td>
+                        <td>1:57 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>1:51 PM</td>
+                        <td></td>
+                        <td>1:59 PM</td>
+                        <td></td>
+                        <td>2:10 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>2:04 PM</td>
+                        <td></td>
+                        <td>2:12 PM</td>
+                        <td></td>
+                        <td>2:23 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>2:17 PM</td>
+                        <td></td>
+                        <td>2:25 PM</td>
+                        <td></td>
+                        <td>2:36 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>2:30 PM</td>
+                        <td></td>
+                        <td>2:38 PM</td>
+                        <td></td>
+                        <td>2:49 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>2:43 PM</td>
+                        <td></td>
+                        <td>2:51 PM</td>
+                        <td></td>
+                        <td>3:02 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>2:56 PM</td>
+                        <td></td>
+                        <td>3:04 PM</td>
+                        <td></td>
+                        <td>3:15 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>3:09 PM</td>
+                        <td></td>
+                        <td>3:17 PM</td>
+                        <td></td>
+                        <td>3:28 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>3:22 PM</td>
+                        <td></td>
+                        <td>3:30 PM</td>
+                        <td></td>
+                        <td>3:41 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>3:35 PM</td>
+                        <td></td>
+                        <td>3:43 PM</td>
+                        <td></td>
+                        <td>3:54 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>3:48 PM</td>
+                        <td></td>
+                        <td>3:56 PM</td>
+                        <td></td>
+                        <td>4:07 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>4:01 PM</td>
+                        <td></td>
+                        <td>4:09 PM</td>
+                        <td></td>
+                        <td>4:20 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>4:14 PM</td>
+                        <td></td>
+                        <td>4:22 PM</td>
+                        <td></td>
+                        <td>4:33 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>4:27 PM</td>
+                        <td></td>
+                        <td>4:35 PM</td>
+                        <td></td>
+                        <td>4:46 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>4:40 PM</td>
+                        <td></td>
+                        <td>5:00 PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                
+                <a id="silverWeekend">  
+                <h2 class="schedSubhead">Weekend Schedule</h2>
+                
+                <table border="1" class="schedules">
+                    <thead>
+                      <tr style="text-align: right;">
+                        <th>Mines Park Community Center</th>
+                        <th>Survey Field</th>
+                        <th>Kafadar Commons</th>
+                        <th>K Lot</th>
+                        <th>Guggenheim Hall</th>
+                        <th>CSM Student Rec Center</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>8:00 AM</td>
+                        <td></td>
+                        <td>8:08 AM</td>
+                        <td></td>
+                        <td>8:19 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>8:25 AM</td>
+                        <td></td>
+                        <td>8:33 AM</td>
+                        <td></td>
+                        <td>8:44 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>8:50 AM</td>
+                        <td></td>
+                        <td>8:58 AM</td>
+                        <td></td>
+                        <td>9:09 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>9:15 AM</td>
+                        <td></td>
+                        <td>9:23 AM</td>
+                        <td></td>
+                        <td>9:34 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>9:40 AM</td>
+                        <td></td>
+                        <td>9:48 AM</td>
+                        <td></td>
+                        <td>9:59 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>10:05 AM</td>
+                        <td></td>
+                        <td>10:13 AM</td>
+                        <td></td>
+                        <td>10:24 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>10:30 AM</td>
+                        <td></td>
+                        <td>10:38 AM</td>
+                        <td></td>
+                        <td>10:49 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>10:55 AM</td>
+                        <td></td>
+                        <td>11:03 AM</td>
+                        <td></td>
+                        <td>11:14 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>11:20 AM</td>
+                        <td></td>
+                        <td>11:28 AM</td>
+                        <td></td>
+                        <td>11:39 AM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>11:45 AM</td>
+                        <td></td>
+                        <td>11:53 AM</td>
+                        <td></td>
+                        <td>12:04:00</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>12:10 PM</td>
+                        <td></td>
+                        <td>12:18 PM</td>
+                        <td></td>
+                        <td>12:29 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>12:35 PM</td>
+                        <td></td>
+                        <td>12:43 PM</td>
+                        <td></td>
+                        <td>12:54 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>1:00 PM</td>
+                        <td></td>
+                        <td>1:08 PM</td>
+                        <td></td>
+                        <td>1:19 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>1:25 PM</td>
+                        <td></td>
+                        <td>1:33 PM</td>
+                        <td></td>
+                        <td>1:44 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>1:50 PM</td>
+                        <td></td>
+                        <td>1:58 PM</td>
+                        <td></td>
+                        <td>2:09 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>2:15 PM</td>
+                        <td></td>
+                        <td>2:23 PM</td>
+                        <td></td>
+                        <td>2:34 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>2:40 PM</td>
+                        <td></td>
+                        <td>2:48 PM</td>
+                        <td></td>
+                        <td>2:59 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>3:05 PM</td>
+                        <td></td>
+                        <td>3:13 PM</td>
+                        <td></td>
+                        <td>3:24 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>3:30 PM</td>
+                        <td></td>
+                        <td>3:38 PM</td>
+                        <td></td>
+                        <td>3:49 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>3:55 PM</td>
+                        <td></td>
+                        <td>4:03 PM</td>
+                        <td></td>
+                        <td>4:14 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>4:20 PM</td>
+                        <td></td>
+                        <td>4:28 PM</td>
+                        <td></td>
+                        <td>4:39 PM</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>4:45 PM</td>
+                        <td></td>
+                        <td>5:00 PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </a>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+
+
+</html>

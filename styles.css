@@ -403,3 +403,79 @@ button {
   padding: 0.5rem;
   font-size: 1rem;
 }
+
+/* Transit Schedules */
+
+.schedules {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 50px;
+  justify-content: center;
+}
+
+.schedules th {
+  background-color:#00234b;
+  color: #fff;
+  border: 1px solid #00234b;
+  padding: 8px;
+  text-align: center;
+}
+
+.schedules td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+  font-size: large;
+}
+
+.schedHead{
+  color: #00234b;
+  font-size: xx-large;
+}
+
+.schedSubhead {
+  color: #00234b;
+  font-size: x-large;
+  text-align: center;
+  justify-content: center;
+}
+
+.transit-list {
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.transit-list .column {
+  list-style: none;
+  padding: 20;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.transit-list .tlist-header {
+  color: #00234b;
+  font-size: 96px;
+}
+
+.transit-list .tlist-label {
+  color: #00234b;
+  font-size: 48px;
+}
+
+.transit-list .column .tlink .tlist-label:hover {
+  color: #8c9ebd;
+  transition: ease 0.4s;
+}
+
+.transit-list .column .tlink .tlist-header:hover {
+  color: #8c9ebd;
+  transition: ease 0.4s;
+}
+
+.transit-list .tlink {
+  text-decoration: none;
+}
