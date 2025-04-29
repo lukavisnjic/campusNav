@@ -207,7 +207,8 @@ body {
 #directions-panel.block {
   display: block;
   padding: 1rem;
-  max-height: 80%;
+  height: 40vh; /* adjust based on how “big” you want it */
+  max-height: 100%;
   max-width: 100%;
   width: 35vw;
   overflow-y: auto;
@@ -277,7 +278,7 @@ label {
 }
 
 #facts-panel {
-  position: fixed;
+  position: absolute;
   overflow-y: hidden;
   font-size: 1rem;
   background-color: white;
