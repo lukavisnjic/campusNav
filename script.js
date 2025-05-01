@@ -510,7 +510,7 @@ function routeClasses() {
     const value = input.value.trim().toUpperCase();
     if (value === "") return;
 
-    const code = value.split(" ")[0];
+    const code = value.substring(0, 2).toUpperCase();
     const building = buildingCoordinates[code];
 
     if (building) {
