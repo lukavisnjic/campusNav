@@ -270,10 +270,35 @@ function restartTour() {
   }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  if (document.body.classList.contains('floor-plan-page')) {
+    const roomInput = document.getElementById("roomInput");
+
+    if (roomInput) {
+      roomInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault(); // Prevent form submission or other default actions
+          const roomInButton = document.getElementById("roomIn");
+          const currentPage = document.location.pathname;
+          if (currentPage.includes("mcneil")) {
+            mcneilHighlightRoom(); // Call the McNeil building highlight function
+          } else if (currentPage.includes("hill")) {
+            hillHighlightRoom(); // Call the Hill building highlight function
+          } else if (currentPage.includes("chauvenet")) {
+            chauvenetHighlightRoom(); // Call the Hill building highlight function
+          } else {
+            console.log("Unknown building page, no highlight function called.");
+          }
+  
+        }
+      });
+    }
+  }
+});
 
 document.getElementById("next-stop-btn").addEventListener("click", guideToNextStop);
 document.getElementById("restart-tour-btn").addEventListener("click", restartTour);
-// window.onload = initMap;
+
 
 
 // FLOOR PLAN HIGHLIGHTS
@@ -314,7 +339,7 @@ function hillHighlightRoom() {
         "133": "HH133",
         "132": "HH132",
         "131A": "HH131A",
-        "131": "HH31",
+        "131": "HH131",
         "129A": "HH129A",
         "129B": "HH129B",
         "128": "HH128",
@@ -460,12 +485,23 @@ window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
-document.getElementById('backToTop').addEventListener('click', function() {
-  window.scrollTo({
-      top: 0,
-      behavior: 'smooth' 
-  });
+document.addEventListener("DOMContentLoaded", function() {
+  // Check if the backToTop button exists on the page
+  const backToTopButton = document.getElementById('backToTop');
+  
+  if (backToTopButton) {
+    // If the button exists, add the event listener
+    backToTopButton.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  } else {
+    console.log("backToTop button not found on this page");
+  }
 });
+
 
 function emptyPopup() {
     document.getElementById("emptyPopup").style.display = "block";
